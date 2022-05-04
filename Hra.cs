@@ -67,6 +67,11 @@ namespace CSHra
             {                
                 mapa.Presun(x, y, nove_x, nove_y); // presune obsah mapy a pokud je tam pohybliny prvek, zmeni mu x a y
             }
+            /* else if (mapa.JeDiamant(nove_x, nove_y))
+            {
+                mapa.Presun(x, y, nove_x, nove_y);
+                ZbyvaDiamantu--;
+            } */
             else
             {
                 if (mapa.JeVolnoNeboHlina(nove_bx, nove_by))
