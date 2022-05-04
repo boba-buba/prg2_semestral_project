@@ -34,6 +34,8 @@ namespace CSHra
             int nove_x = x;
             int nove_y = y;
 
+            int nove_bx = x;
+            int nove_by = y;
             // ###########################################################
 
             switch (mapa.stisknutaSipka)
@@ -41,25 +43,37 @@ namespace CSHra
                 case StisknutaSipka.zadna:
                     break;
                 case StisknutaSipka.doleva:
-                    nove_x -= 1; 
+                    nove_x -= 1;
+                    nove_bx -= 2;
                     break;
                 case StisknutaSipka.nahoru:
                     nove_y -= 1;
+                    nove_by -= 2;
                     break;
                 case StisknutaSipka.doprava:
                     nove_x += 1;
+                    nove_bx += 2;
                     break;
                 case StisknutaSipka.dolu:
                     nove_y += 1;
+                    nove_by += 2;
                     break;
                 default:
                     break;
             }
-
+            
             // ###########################################################
             if (mapa.JeVolnoNeboHlina(nove_x, nove_y))
-            {
+            {                
                 mapa.Presun(x, y, nove_x, nove_y); // presune obsah mapy a pokud je tam pohybliny prvek, zmeni mu x a y
+            }
+            else
+            {
+                if (mapa.JeVolnoNeboHlina(nove_bx, nove_by))
+                {
+                    mapa.Presun(nove_x, nove_y, nove_bx, nove_by);
+                    mapa.Presun(x, y, nove_x, nove_y);
+                }
             }
         }
     }
