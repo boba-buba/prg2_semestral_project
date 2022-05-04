@@ -129,7 +129,14 @@ namespace CSHra
         public override void UdelejKrok()
         {
             // ###########################################################
-            // ...tady neco schazi...
+            if (mapa.JeVolno(x, y + 1))
+            {
+                mapa.Presun(x, y, x, y + 1);
+                if (mapa.JeHrdina(x, y + 1))
+                {
+                    mapa.stav = Stav.prohra;
+                }
+            }
             // ###########################################################
         }
 
