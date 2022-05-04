@@ -41,16 +41,16 @@ namespace CSHra
                 case StisknutaSipka.zadna:
                     break;
                 case StisknutaSipka.doleva:
-                    // ...tady neco schazi...
+                    nove_x -= 1; 
                     break;
                 case StisknutaSipka.nahoru:
-                    // ...tady neco schazi...
+                    nove_y -= 1;
                     break;
                 case StisknutaSipka.doprava:
-                    // ...tady neco schazi...
+                    nove_x += 1;
                     break;
                 case StisknutaSipka.dolu:
-                    // ...tady neco schazi...
+                    nove_y += 1;
                     break;
                 default:
                     break;
