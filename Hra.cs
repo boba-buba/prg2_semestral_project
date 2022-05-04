@@ -112,6 +112,10 @@ namespace CSHra
             if (mapa.JeVolno(x, y + 1))
             {
                 mapa.Presun(x, y, x, y + 1);
+                if (mapa.JeHrdina(x, y+1))
+                {
+                    mapa.stav = Stav.prohra;
+                }
             }
             // ###########################################################
         }
@@ -205,6 +209,10 @@ namespace CSHra
             return plan[x, y] == 'B';
         }
 
+        public bool JeHrdina(int x, int y)
+        {
+            return plan[x, y] == 'H';
+        }
         public bool JeDiamant(int x, int y)
         {
             return plan[x, y] == 'D';
