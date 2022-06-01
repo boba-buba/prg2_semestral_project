@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ncoro\\source\\repos\\PacMan\\PacMan\\PacMan.csproj": {}
+    "C:\\Users\\ncoro\\Source\\Repos\\student-koropn\\PacMan\\PacMan.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ncoro\\source\\repos\\PacMan\\PacMan\\PacMan.csproj": {
+    "C:\\Users\\ncoro\\Source\\Repos\\student-koropn\\PacMan\\PacMan.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ncoro\\source\\repos\\PacMan\\PacMan\\PacMan.csproj",
+        "projectUniqueName": "C:\\Users\\ncoro\\Source\\Repos\\student-koropn\\PacMan\\PacMan.csproj",
         "projectName": "PacMan",
-        "projectPath": "C:\\Users\\ncoro\\source\\repos\\PacMan\\PacMan\\PacMan.csproj",
+        "projectPath": "C:\\Users\\ncoro\\Source\\Repos\\student-koropn\\PacMan\\PacMan.csproj",
         "packagesPath": "C:\\Users\\ncoro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ncoro\\source\\repos\\PacMan\\PacMan\\obj\\",
+        "outputPath": "C:\\Users\\ncoro\\Source\\Repos\\student-koropn\\PacMan\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ncoro\\AppData\\Roaming\\NuGet\\NuGet.Config",
