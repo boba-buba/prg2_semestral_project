@@ -1,0 +1,12 @@
+C:\Users\ncoro\Source\Repos\student-koropn\bin\Debug\ikonky.png
+C:\Users\ncoro\Source\Repos\student-koropn\bin\Debug\plan.txt
+C:\Users\ncoro\Source\Repos\student-koropn\bin\Debug\CSHra.exe.config
+C:\Users\ncoro\Source\Repos\student-koropn\bin\Debug\CSHra.exe
+C:\Users\ncoro\Source\Repos\student-koropn\bin\Debug\CSHra.pdb
+C:\Users\ncoro\Source\Repos\student-koropn\obj\Debug\CSHra.csproj.AssemblyReference.cache
+C:\Users\ncoro\Source\Repos\student-koropn\obj\Debug\CSHra.Form1.resources
+C:\Users\ncoro\Source\Repos\student-koropn\obj\Debug\CSHra.Properties.Resources.resources
+C:\Users\ncoro\Source\Repos\student-koropn\obj\Debug\CSHra.csproj.GenerateResource.cache
+C:\Users\ncoro\Source\Repos\student-koropn\obj\Debug\CSHra.csproj.CoreCompileInputs.cache
+C:\Users\ncoro\Source\Repos\student-koropn\obj\Debug\CSHra.exe
+C:\Users\ncoro\Source\Repos\student-koropn\obj\Debug\CSHra.pdb
