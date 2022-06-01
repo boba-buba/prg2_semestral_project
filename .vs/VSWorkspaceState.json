@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\PacMan",
+    "\\PacMan\\bin"
   ],
-  "SelectedNode": "\\bin",
+  "SelectedNode": "\\PacMan\\Form1.cs",
   "PreviewInSolutionExplorer": false
 }
