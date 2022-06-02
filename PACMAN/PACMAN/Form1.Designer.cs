@@ -66,9 +66,8 @@ namespace PACMAN
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BPlay;
         private System.Windows.Forms.Timer timer1;
+        protected System.Windows.Forms.Button BPlay;
     }
 }
 
