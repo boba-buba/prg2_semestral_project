@@ -12,7 +12,6 @@ namespace PACMAN
 {
     public partial class Form1 : Form
     {
-        enum STATE { START, GAME, LOST, WIN};
         public Form1()
         {
             InitializeComponent();
@@ -20,9 +19,20 @@ namespace PACMAN
 
         private void BPlay_Click(object sender, EventArgs e)
         {
-             BPlay.Visible = false;
-             BackgroundImage = null;
-             BackColor = Color.Black;
+            BPlay.Visible = false;
+            BackgroundImage = null;
+            BackColor = Color.Black;
+
+            timer1.Enabled = true;
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
     }
 }

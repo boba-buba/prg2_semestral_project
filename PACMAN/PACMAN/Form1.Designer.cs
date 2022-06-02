@@ -29,7 +29,9 @@ namespace PACMAN
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.BPlay = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // BPlay
@@ -66,6 +68,7 @@ namespace PACMAN
         #endregion
 
         private System.Windows.Forms.Button BPlay;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
