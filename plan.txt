@@ -4,8 +4,6 @@
 R   
 cccc
 ccch
-
-
 20
 12
 cvccccccccccccccccc<

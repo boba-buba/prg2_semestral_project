@@ -17,10 +17,13 @@ namespace CSHra
         {
             InitializeComponent();
             bNext.Visible = false;
+           
         }
 
         Mapa mapa;
         Graphics g;
+        public int line = 0;
+
         private void button1_Click(object sender, EventArgs e)
         {
             g = CreateGraphics(); 
@@ -68,22 +71,30 @@ namespace CSHra
         {
             if (keyData == Keys.Up)
             {
+                mapa.ZmenaHrdiny('U');
                 stisknutaSipka = StisknutaSipka.nahoru;
+                
                 return true;
             }
             if (keyData == Keys.Down)
             {
+                mapa.ZmenaHrdiny('D');
                 stisknutaSipka = StisknutaSipka.dolu;
+                
                 return true;
             }
             if (keyData == Keys.Left)
             {
+                mapa.ZmenaHrdiny('L');
                 stisknutaSipka = StisknutaSipka.doleva;
+                
                 return true;
             }
             if (keyData == Keys.Right)
             {
+                mapa.ZmenaHrdiny('R');
                 stisknutaSipka = StisknutaSipka.doprava;
+                
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -101,7 +112,9 @@ namespace CSHra
 
         private void button2_Click(object sender, EventArgs e)
         {
-            mapa.stav = Stav.bezi;
+            button1_Click(sender, e);
         }
+
+      
     }
 }

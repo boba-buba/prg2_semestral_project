@@ -119,11 +119,12 @@ namespace CSHra
     public enum Stav { nezacala, bezi, vyhra, prohra };
     class Mapa
     {
-        private char[,] plan;
+        public char[,] plan;
         public int sirka;
         public int vyska;
         public int ZbyvaDiamantu;
         public int pocetDiamantu;
+
 
         public Stav stav = Stav.nezacala;
 
@@ -151,7 +152,7 @@ namespace CSHra
             plan[naX, naY] = c;
 
             // podivat se, jestli tam nestal hrdina:
-            if (c=='R')
+            if (c=='R' || c == 'L' || c == 'U' || c == 'D')
             {
                 hrdina.x = naX;
                 hrdina.y = naY;
@@ -172,7 +173,7 @@ namespace CSHra
         }
 
         public void ZrusPohyblivyPrvek(int zX, int zY)
-        {
+        { 
             // najit pohyblivyPrvek a vyhodit ho ze seznamu :
             for (int i = 0; i < PohyblivePrvkyKromeHrdiny.Count; i++)
             {
@@ -204,10 +205,8 @@ namespace CSHra
 
         public bool JeVolno(int x, int y)
         {
-            x = x % sirka;
-            y = y % vyska;
 
-            return (plan[x, y] == ' ');  // chyba kdyz se snazim vyjit za hranice pole
+            return (plan[x, y] == ' '); 
         }
 
  
@@ -237,7 +236,7 @@ namespace CSHra
             vyska = int.Parse(sr.ReadLine());
             plan = new char[sirka, vyska];
             ZbyvaDiamantu = 0;
-
+            
             for (int y = 0; y < vyska; y++)
             {
                 string radek = sr.ReadLine();
@@ -250,12 +249,16 @@ namespace CSHra
                     switch (znak)
                     {
                         case 'R':
+                        case 'L':
+                        case 'U':
+                        case 'D':
                             this.hrdina = new Hrdina(this, x, y);
                             break;
 
                         case '<':
                         case '^':
                         case '>':
+                        case 'v':
                             Prisera prisera = new Prisera(this, x, y, znak);
                             PohyblivePrvkyKromeHrdiny.Add(prisera);
                             break;
@@ -327,6 +330,14 @@ namespace CSHra
             }
         }
 
+        public void ZmenaHrdiny(char naCo)
+        {
+            for (int y =  0; y < vyska; y++)
+            {
+                for (int x = 0; x < sirka; x++)
+                    if (plan[x, y] == 'R' || plan[x, y] == 'L' || plan[x, y] == 'U' || plan[x, y] == 'D') plan[x, y] = naCo;
+            }
+        }
         public void PohniVsemiPrvky(StisknutaSipka stisknutaSipka)
         {
             this.stisknutaSipka = stisknutaSipka;
