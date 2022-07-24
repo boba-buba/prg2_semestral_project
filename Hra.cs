@@ -116,7 +116,7 @@ namespace CSHra
 
 
 
-    public enum Stav { nezacala, bezi, vyhra, prohra };
+    public enum Stav { nezacala, bezi, vyhra, prohra, konec };
     class Mapa
     {
         public char[,] plan;
@@ -124,6 +124,7 @@ namespace CSHra
         public int vyska;
         public int ZbyvaDiamantu;
         public int pocetDiamantu;
+        public int offsetLine;
 
 
         public Stav stav = Stav.nezacala;
@@ -134,14 +135,14 @@ namespace CSHra
 
         public Hrdina hrdina;
         public List<PohyblivyPrvek> PohyblivePrvkyKromeHrdiny;
-
+        public int offset;
         public StisknutaSipka stisknutaSipka;
 
 
-        public Mapa(string cestaMapa, string cestaIkonky)
+        public Mapa(string cestaMapa, string cestaIkonky, int offset)
         {
             NactiIkonky(cestaIkonky);
-            NactiMapu(cestaMapa);
+            NactiMapu(cestaMapa, offset);
             stav = Stav.bezi;
         }
 
@@ -227,16 +228,26 @@ namespace CSHra
         }
 
 
-        public void NactiMapu(string cesta)
+        public void NactiMapu(string cesta, int offset)
         {
             PohyblivePrvkyKromeHrdiny = new List<PohyblivyPrvek>();
 
             System.IO.StreamReader sr = new System.IO.StreamReader(cesta);
+            string line = null;
+            for (int i = 0; i < offset; i++)
+            {
+                sr.ReadLine();
+            }
+
+            
+
             sirka = int.Parse(sr.ReadLine());
+            //if (sirka == 0) { stav = Stav.konec; sr.Close();}
             vyska = int.Parse(sr.ReadLine());
             plan = new char[sirka, vyska];
             ZbyvaDiamantu = 0;
-            
+            offsetLine = vyska + 2;
+
             for (int y = 0; y < vyska; y++)
             {
                 string radek = sr.ReadLine();
@@ -337,6 +348,7 @@ namespace CSHra
                 for (int x = 0; x < sirka; x++)
                     if (plan[x, y] == 'R' || plan[x, y] == 'L' || plan[x, y] == 'U' || plan[x, y] == 'D') plan[x, y] = naCo;
             }
+            return;
         }
         public void PohniVsemiPrvky(StisknutaSipka stisknutaSipka)
         {

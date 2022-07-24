@@ -22,14 +22,19 @@ namespace CSHra
 
         Mapa mapa;
         Graphics g;
-        public int line = 0;
+        public int offset = 0;
 
         private void button1_Click(object sender, EventArgs e)
         {
-            g = CreateGraphics(); 
-            mapa = new Mapa("plan.txt", "ikonky.png");
+            g = CreateGraphics();
+            if (offset +1 == System.IO.File.ReadAllLines("plan.txt").Count())
+            {
+                mapa.stav = Stav.konec;
+                return;
+            }
+            mapa = new Mapa("plan.txt", "ikonky.png", offset);
             this.Text = "Zbývá sebrat " + mapa.ZbyvaDiamantu + " diamantů";
-
+            offset +=  mapa.offsetLine;
             timer1.Enabled = true;
             button1.Visible = false;
             
@@ -58,6 +63,11 @@ namespace CSHra
                     bNext.Visible = false;
                     timer1.Enabled = false;
                     MessageBox.Show("Prohra!");
+                    break;
+                case Stav.konec:
+                    bNext.Visible = false;
+                    timer1.Enabled = false;                    
+                    MessageBox.Show("Konec!");
                     break;
                 default:
                     break;
@@ -112,7 +122,9 @@ namespace CSHra
 
         private void button2_Click(object sender, EventArgs e)
         {
+
             button1_Click(sender, e);
+           
         }
 
       
