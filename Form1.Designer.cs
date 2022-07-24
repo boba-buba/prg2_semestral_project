@@ -32,6 +32,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.bNext = new System.Windows.Forms.Button();
+            this.bAgain = new System.Windows.Forms.Button();
+            this.Intro = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.Intro)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -39,7 +42,7 @@
             this.button1.BackColor = System.Drawing.Color.Black;
             this.button1.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Yellow;
-            this.button1.Location = new System.Drawing.Point(645, 418);
+            this.button1.Location = new System.Drawing.Point(551, 522);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(200, 107);
@@ -57,7 +60,7 @@
             this.bNext.BackColor = System.Drawing.Color.Black;
             this.bNext.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bNext.ForeColor = System.Drawing.Color.Yellow;
-            this.bNext.Location = new System.Drawing.Point(645, 120);
+            this.bNext.Location = new System.Drawing.Point(551, 360);
             this.bNext.Name = "bNext";
             this.bNext.Size = new System.Drawing.Size(200, 104);
             this.bNext.TabIndex = 1;
@@ -65,20 +68,47 @@
             this.bNext.UseVisualStyleBackColor = false;
             this.bNext.Click += new System.EventHandler(this.button2_Click);
             // 
+            // bAgain
+            // 
+            this.bAgain.BackColor = System.Drawing.Color.Black;
+            this.bAgain.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bAgain.ForeColor = System.Drawing.Color.Yellow;
+            this.bAgain.Location = new System.Drawing.Point(551, 196);
+            this.bAgain.Name = "bAgain";
+            this.bAgain.Size = new System.Drawing.Size(200, 104);
+            this.bAgain.TabIndex = 2;
+            this.bAgain.Text = "AGAIN";
+            this.bAgain.UseVisualStyleBackColor = false;
+            this.bAgain.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // Intro
+            // 
+            this.Intro.Image = global::CSHra.Properties.Resources.intro;
+            this.Intro.Location = new System.Drawing.Point(135, -1);
+            this.Intro.Name = "Intro";
+            this.Intro.Size = new System.Drawing.Size(1044, 580);
+            this.Intro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Intro.TabIndex = 3;
+            this.Intro.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::CSHra.Properties.Resources.intro;
+            this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1312, 718);
-            this.Controls.Add(this.bNext);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.Intro);
+            this.Controls.Add(this.bAgain);
+            this.Controls.Add(this.bNext);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.Intro)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -88,6 +118,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button bNext;
+        private System.Windows.Forms.Button bAgain;
+        private System.Windows.Forms.PictureBox Intro;
     }
 }
 

@@ -78,7 +78,7 @@ namespace CSHra
             nove_x = (nove_x+mapa.sirka) % mapa.sirka;
             nove_y = (nove_y+mapa.vyska) % mapa.vyska;
             // ###########################################################
-            
+
             if (mapa.JeVolno(nove_x, nove_y))
             {
                 mapa.Presun(x, y, nove_x, nove_y); // presune obsah mapy a pokud je tam pohybliny prvek, zmeni mu x a y
@@ -89,6 +89,8 @@ namespace CSHra
                 //ZbyvaDiamantu--;
 
             }
+            else if (mapa.JePrisera(nove_x, nove_y))
+                mapa.stav = Stav.prohra;
             else return;
 
         }
@@ -102,13 +104,20 @@ namespace CSHra
             this.x = kdex;
             this.y = kdey;
 
-            Smer = "<^>".IndexOf(charSmer);
+            Smer = "<^>V".IndexOf(charSmer);
         }
         public override void UdelejKrok()
         {
-            // ###########################################################
-            // ...tady neco schazi...
-            // ###########################################################
+
+            //List<(int, int)> kroky = new List<>() { (-1, 0), (0, -1), (1, 0), (0, 1)};
+            /*int[,] kroky = new int[4,2] { {-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+
+            int xPrisera = (kroky[Smer, 0] + mapa.sirka) % mapa.sirka;
+            int yPrisera = (kroky[Smer, 1] + mapa.vyska) % mapa.vyska;
+            if (mapa.JeVolno(xPrisera, yPrisera))
+            {
+                 mapa.Presun(x, y, xPrisera, yPrisera); 
+            }*/
         }
 
     }
@@ -210,6 +219,11 @@ namespace CSHra
             return (plan[x, y] == ' '); 
         }
 
+        public bool JePrisera(int x, int y)
+        {
+            return plan[x, y] == '>' || plan[x, y] == '<' || plan[x, y] == 'V' || plan[x, y] == '^';
+        }
+
  
         public void Prohra(int x, int y)
         {
@@ -233,7 +247,6 @@ namespace CSHra
             PohyblivePrvkyKromeHrdiny = new List<PohyblivyPrvek>();
 
             System.IO.StreamReader sr = new System.IO.StreamReader(cesta);
-            string line = null;
             for (int i = 0; i < offset; i++)
             {
                 sr.ReadLine();

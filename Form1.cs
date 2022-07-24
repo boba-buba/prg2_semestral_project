@@ -17,7 +17,7 @@ namespace CSHra
         {
             InitializeComponent();
             bNext.Visible = false;
-           
+            bAgain.Visible = false;
         }
 
         Mapa mapa;
@@ -27,7 +27,7 @@ namespace CSHra
         private void button1_Click(object sender, EventArgs e)
         {
             g = CreateGraphics();
-            if (offset +1 == System.IO.File.ReadAllLines("plan.txt").Count())
+            if (offset + 1 == System.IO.File.ReadAllLines("plan.txt").Count())
             {
                 mapa.stav = Stav.konec;
                 return;
@@ -47,6 +47,8 @@ namespace CSHra
             switch (mapa.stav)
             {
                 case Stav.bezi:
+                    Intro.Visible = false;
+                    bAgain.Visible = false;
                     bNext.Visible = false;
                     this.BackgroundImage = null;
                     this.BackColor = Color.Black;
@@ -55,18 +57,23 @@ namespace CSHra
                     this.Text = "Zbývá sebrat " + mapa.ZbyvaDiamantu + " diamantů";
                     break;
                 case Stav.vyhra:
+                    Intro.Visible = false;
                     timer1.Enabled = false;
                     bNext.Visible = true;
                     MessageBox.Show("Vyhra!");
                     break;
                 case Stav.prohra:
+                    Intro.Visible = false;
                     bNext.Visible = false;
                     timer1.Enabled = false;
+                    bAgain.Visible = true;
                     MessageBox.Show("Prohra!");
                     break;
                 case Stav.konec:
+                    Intro.Visible = false;
                     bNext.Visible = false;
-                    timer1.Enabled = false;                    
+                    timer1.Enabled = false;
+                    bAgain.Visible = true;
                     MessageBox.Show("Konec!");
                     break;
                 default:
@@ -127,6 +134,16 @@ namespace CSHra
            
         }
 
-      
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            offset = 0;
+            button1_Click(sender, e);
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
