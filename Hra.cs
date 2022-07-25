@@ -203,7 +203,7 @@ namespace CSHra
         }
         public bool JeMince(int x, int y)
         {
-            if (plan[x, y] == 'c')
+            if (plan[x, y] == 'c' || plan[x, y] == 'C' || plan[x, y] == 'A')
             {
                 pocetDiamantu++;
                 KonecLevelu();
@@ -288,6 +288,8 @@ namespace CSHra
                             break;
 
                         case 'c':
+                        case 'C':
+                        case 'A':
                             Mince mince = new Mince(this, x, y);
                             PohyblivePrvkyKromeHrdiny.Add(mince);
                             ZbyvaDiamantu++;
@@ -347,7 +349,7 @@ namespace CSHra
                     int my = dy + y; // index do mapy
 
                     char c = plan[mx, my];
-                    int indexObrazku = "RLUD vhu(n)c1234<>^".IndexOf(c); // 0..
+                    int indexObrazku = "RLUD vhu(n)c1234<>^VCA".IndexOf(c); // 0..
                     
                     g.DrawImage(ikonky[indexObrazku], x * sx, y * sx); 
                 }

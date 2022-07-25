@@ -1,7 +1,7 @@
 4
 4
     
-R   
+R  A
 cccc
 ccch
 5
@@ -10,19 +10,19 @@ ccch
 hh3c 
  ^uc 
    c 
-   cR
+C  cR
 20
 12
-cvccccccccccccccccc<
+cvcccccccCccccccccc<
 c1hhhhhh)c2hhhhhhh3c
-ccccccccccvcccccccvc
+ccAcccccccvcccccccvc
 2hhhhhhh)cvc(hhhhh4c
 vcccccc<ccvccccccccc
 1hhh)c2h3c1hhhhhhhhh
 R ccccvcvccccccccccc
 hhhh3cvc1hhhhh3ccc2h
-ccccvcvcccccccvcncvc
+ccccvcvcccAcccvcncvc
 ncncvcvc(hhh3cvcvcvc
 vc1h4cv^ccccvcucvcvc
-vccccc1hh3ccvccc1h4c
+vccCcc1hh3ccvccc1h4c
 0
