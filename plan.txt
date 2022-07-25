@@ -1,3 +1,17 @@
+20
+12
+cvcccccccCccccccccc<
+c1hhhhhh)c2hhhhhhh3c
+ccAcccccccvcccccccvc
+2hhhhhhh)cvc(hhhhh4c
+vccccccVccvccccccccc
+1hhh)c2h3c1hhhhhhhhh
+R ccccvcvccccccccccc
+hhhh3cvc1hhhhh3ccc2h
+ccccvcvcccAcccvcncvc
+ncncvcvc(hhh3cvcvcvc
+vc1h4cv^ccccvcucvcvc
+vccCcc1hh3ccvccc1h4c
 4
 4
     
@@ -11,18 +25,3 @@ hh3c
  ^uc 
    c 
 C  cR
-20
-12
-cvcccccccCccccccccc<
-c1hhhhhh)c2hhhhhhh3c
-ccAcccccccvcccccccvc
-2hhhhhhh)cvc(hhhhh4c
-vcccccc<ccvccccccccc
-1hhh)c2h3c1hhhhhhhhh
-R ccccvcvccccccccccc
-hhhh3cvc1hhhhh3ccc2h
-ccccvcvcccAcccvcncvc
-ncncvcvc(hhh3cvcvcvc
-vc1h4cv^ccccvcucvcvc
-vccCcc1hh3ccvccc1h4c
-0

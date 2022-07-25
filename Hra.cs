@@ -108,16 +108,35 @@ namespace CSHra
         }
         public override void UdelejKrok()
         {
-
+            Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
+            { { '>', (0, 1) }, {'<', (0, -1)}, {'^', (-1, 0)}, {'V', (1, 0)} };
             //List<(int, int)> kroky = new List<>() { (-1, 0), (0, -1), (1, 0), (0, 1)};
-            /*int[,] kroky = new int[4,2] { {-1, 0}, {0, -1}, {1, 0}, {0, 1}};
+            //int[,] kroky = new int[4,2] { {-1, 0}, {0, -1}, {1, 0}, {0, 1}};
 
-            int xPrisera = (kroky[Smer, 0] + mapa.sirka) % mapa.sirka;
-            int yPrisera = (kroky[Smer, 1] + mapa.vyska) % mapa.vyska;
+            //int xPrisera = (kroky[Smer, 0] + mapa.sirka + x) % mapa.sirka;
+            //int yPrisera = (kroky[Smer, 1] + mapa.vyska + y) % mapa.vyska;
+            char c = mapa.plan[x, y];
+            int xPrisera = (polohaTah[c].Item1 + mapa.sirka + x) % mapa.sirka;
+            int yPrisera = (polohaTah[c].Item2 + mapa.vyska + y) % mapa.vyska;
+
+            
             if (mapa.JeVolno(xPrisera, yPrisera))
             {
-                 mapa.Presun(x, y, xPrisera, yPrisera); 
-            }*/
+                //mapa.Presun(x, y, xPrisera, yPrisera); 
+                
+                mapa.plan[x, y] = ' ';
+                mapa.plan[xPrisera, yPrisera] = c;
+                x = xPrisera;
+                y = yPrisera;
+            }
+            else
+            {
+                if (c == '>') mapa.plan[x, y] = '<';
+                if (c == '<') mapa.plan[x, y] = '>';
+                if (c == '^') mapa.plan[x, y] = 'V';
+                if (c == 'V') mapa.plan[x, y] = '^';
+            }
+            
         }
 
     }
@@ -282,7 +301,7 @@ namespace CSHra
                         case '<':
                         case '^':
                         case '>':
-                        case 'v':
+                        case 'V':
                             Prisera prisera = new Prisera(this, x, y, znak);
                             PohyblivePrvkyKromeHrdiny.Add(prisera);
                             break;
