@@ -4,7 +4,6 @@ using System.Drawing;
 
 namespace CSHra
 {
-
     abstract class Prvek
     {
         //public abstract Bitmap MujObrazek();
@@ -86,7 +85,6 @@ namespace CSHra
             else if (mapa.JeMinceHrdina(nove_x, nove_y))
             {
                 mapa.Presun(x, y, nove_x, nove_y);
-                //ZbyvaDiamantu--;
 
             }
             else if (mapa.JePrisera(nove_x, nove_y))
@@ -103,8 +101,6 @@ namespace CSHra
             this.mapa = mapa;
             this.x = kdex;
             this.y = kdey;
-
-            //Smer = "<^>V".IndexOf(charSmer);
         }
         //###################################
         static Dictionary<char, (int, int)> zpravaZed = new Dictionary<char, (int, int)>()
@@ -113,7 +109,6 @@ namespace CSHra
         static Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
         { { '>', (0, 1) }, {'<', (0, -1)}, {'^', (-1, 0)}, {'V', (1, 0)} };
         public int count = 0;
-
 
         static bool pred = false;
         static bool predRight = false;
@@ -136,9 +131,7 @@ namespace CSHra
             else if (p == 'V') p = '<';
             return p;
         }
-
-        
-
+      
         public void move()
         {
             char c = mapa.plan[x, y];
@@ -147,7 +140,7 @@ namespace CSHra
             int yPrisera = (polohaTah[c].Item2 + mapa.vyska + y) % mapa.vyska;
 
            
-            if (mapa.JeHrdina(xPrisera, yPrisera)) // ????
+            if (mapa.JeHrdina(xPrisera, yPrisera))
             {
                 mapa.stav = Stav.prohra;
             }
@@ -210,15 +203,12 @@ namespace CSHra
         {
             if (count == 1) { count = 0; move(); }
             else count++;
-
         }
 
     }
 
 
-
-
-    public enum Stav { nezacala, bezi, vyhra, prohra, konec };
+    public enum Stav { nezacala, bezi, vyhra, prohra };
     class Mapa
     {
         public char[,] plan;
@@ -228,9 +218,7 @@ namespace CSHra
         public int pocetDiamantu;
         public int offsetLine;
 
-
         public Stav stav = Stav.nezacala;
-
 
         Bitmap[] ikonky;
         int sx; // velikost kosticky ikonek
@@ -296,15 +284,7 @@ namespace CSHra
         }
         public bool JeMince(int x, int y)
         {
-            if (plan[x, y] == 'c' || plan[x, y] == 'C' || plan[x, y] == 'A')
-            {
-                //pocetDiamantu++;
-                //KonecLevelu();
-                return true;
-                
-            }
-            
-            return false;
+            return (plan[x, y] == 'c' || plan[x, y] == 'C' || plan[x, y] == 'A');
         }
 
         public bool JeMinceHrdina(int x, int y)
@@ -314,9 +294,7 @@ namespace CSHra
                 pocetDiamantu++;
                 KonecLevelu();
                 return true;
-
             }
-
             return false;
         }
 
@@ -331,7 +309,6 @@ namespace CSHra
             return plan[x, y] == '>' || plan[x, y] == '<' || plan[x, y] == 'V' || plan[x, y] == '^';
         }
 
- 
         public void Prohra(int x, int y)
         {
             return;
@@ -358,11 +335,9 @@ namespace CSHra
             {
                 sr.ReadLine();
             }
-
-            
+           
 
             sirka = int.Parse(sr.ReadLine());
-            //if (sirka == 0) { stav = Stav.konec; sr.Close();}
             vyska = int.Parse(sr.ReadLine());
             plan = new char[sirka, vyska];
             ZbyvaDiamantu = 0;

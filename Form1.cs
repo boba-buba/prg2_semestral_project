@@ -18,6 +18,7 @@ namespace CSHra
             InitializeComponent();
             bNext.Visible = false;
             bAgain.Visible = false;
+            lResult.Visible = false;
         }
 
         Mapa mapa;
@@ -28,20 +29,13 @@ namespace CSHra
         private void button1_Click(object sender, EventArgs e)
         {
             g = CreateGraphics();
-             
-            if (offset == System.IO.File.ReadAllLines("plan.txt").Count())
-            {
-                mapa.stav = Stav.konec;
-                return;
-            }
             mapa = new Mapa("plan.txt", "ikonky.png", offset);
-            //this.Text = "Zbývá sebrat " + mapa.pocetDiamantu + "/" +  mapa.ZbyvaDiamantu + " diamantů";
-            //int mezivysledek = 0;
-            this.Text = "Zbývá " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " diamantů";
+            this.Text = "Zbývá " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí";
             offset +=  mapa.offsetLine;
             timer1.Enabled = true;
             button1.Visible = false;
-            
+            lResult.Visible = false;
+
 
         }
 
@@ -52,41 +46,38 @@ namespace CSHra
             {
                 case Stav.bezi:
                     
-                    this.Text = "Zbývá sebrat " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " diamantů";
+                    this.Text = "Zbývá sebrat " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí";
                     if ( mezivysledek  != mapa.pocetDiamantu)
                     {
                         mezivysledek = mapa.pocetDiamantu;
-
                     }
+                    lResult.Visible = false;
                     Intro.Visible = false;
                     bAgain.Visible = false;
                     bNext.Visible = false;
                     this.BackgroundImage = null;
                     this.BackColor = Color.Black;
                     mapa.PohniVsemiPrvky(stisknutaSipka);
-                    mapa.VykresliSe(g, ClientSize.Width, ClientSize.Height);
-                    //this.Text = "Zbývá sebrat " + mapa.ZbyvaDiamantu + " diamantů";
+                    mapa.VykresliSe(g, ClientSize.Width, ClientSize.Height);                   
                     break;
                 case Stav.vyhra:
                     Intro.Visible = false;
                     timer1.Enabled = false;
                     bNext.Visible = true;
-                    MessageBox.Show("Vyhra!");
+                    mezivysledek++;
+                    lResult.Text = "Vyhra!" + " Sebrali jste " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " mincí\n"
+                        + "Zmačkněte NEXT, abyste přešli\n do další úrovně!";
+                    lResult.Visible = true;
                     break;
                 case Stav.prohra:
                     Intro.Visible = false;
                     bNext.Visible = false;
                     timer1.Enabled = false;
                     bAgain.Visible = true;
-                    MessageBox.Show("Prohra!");
+                    lResult.Text = "Prohra!" + " Sebrali jste " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " mincí"; // dodat opci pro povtor tehle urovne nebo pro celou hru, jeste jedna button
+                    lResult.Visible = true;
                     break;
-                case Stav.konec:
-                    Intro.Visible = false;
-                    bNext.Visible = false;
-                    timer1.Enabled = false;
-                    bAgain.Visible = true;
-                    MessageBox.Show("Konec!");
-                    break;
+                
                 default:
                     break;
             }
@@ -140,12 +131,14 @@ namespace CSHra
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (mapa.stav == Stav.konec)
+            if  (offset == System.IO.File.ReadAllLines("plan.txt").Count())
             {
+                Intro.Visible = false;
                 bNext.Visible = false;
                 timer1.Enabled = false;
                 bAgain.Visible = true;
-                MessageBox.Show("Konec!");
+                lResult.Text = "Konec! Prošli jste celou hru!\nZmačknutím tlačítka\nAGAIN začněte hru znovu!";
+                lResult.Visible = true;
             }
             else
             button1_Click(sender, e);
@@ -154,12 +147,9 @@ namespace CSHra
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            
-            
-                offset = 0;
+
+                offset = 0; // dodat offset pro uroven nebo tlacitko nove
                 button1_Click(sender, e);
-            
-            
 
         }
 
@@ -169,6 +159,11 @@ namespace CSHra
         }
 
         private void Intro_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lResult_Click(object sender, EventArgs e)
         {
 
         }

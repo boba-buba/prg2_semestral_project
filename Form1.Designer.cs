@@ -34,6 +34,7 @@
             this.bNext = new System.Windows.Forms.Button();
             this.bAgain = new System.Windows.Forms.Button();
             this.Intro = new System.Windows.Forms.PictureBox();
+            this.lResult = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Intro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,6 +93,19 @@
             this.Intro.TabStop = false;
             this.Intro.Click += new System.EventHandler(this.Intro_Click);
             // 
+            // lResult
+            // 
+            this.lResult.AutoSize = true;
+            this.lResult.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lResult.ForeColor = System.Drawing.Color.Yellow;
+            this.lResult.Location = new System.Drawing.Point(371, 23);
+            this.lResult.Name = "lResult";
+            this.lResult.Size = new System.Drawing.Size(143, 40);
+            this.lResult.TabIndex = 4;
+            this.lResult.Text = "label1";
+            this.lResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lResult.Click += new System.EventHandler(this.lResult_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -99,6 +113,7 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1312, 718);
+            this.Controls.Add(this.lResult);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bAgain);
             this.Controls.Add(this.bNext);
@@ -111,6 +126,7 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.Intro)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -121,6 +137,7 @@
         private System.Windows.Forms.Button bNext;
         private System.Windows.Forms.Button bAgain;
         private System.Windows.Forms.PictureBox Intro;
+        private System.Windows.Forms.Label lResult;
     }
 }
 
