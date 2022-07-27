@@ -104,7 +104,7 @@ namespace CSHra
             this.x = kdex;
             this.y = kdey;
 
-            Smer = "<^>V".IndexOf(charSmer);
+            //Smer = "<^>V".IndexOf(charSmer);
         }
         //###################################
         static Dictionary<char, (int, int)> zpravaZed = new Dictionary<char, (int, int)>()
@@ -112,7 +112,7 @@ namespace CSHra
 
         static Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
         { { '>', (0, 1) }, {'<', (0, -1)}, {'^', (-1, 0)}, {'V', (1, 0)} };
-
+        public int count = 0;
 
 
         static bool pred = false;
@@ -137,7 +137,9 @@ namespace CSHra
             return p;
         }
 
-        public override void UdelejKrok()
+        
+
+        public void move()
         {
             char c = mapa.plan[x, y];
             
@@ -204,7 +206,12 @@ namespace CSHra
                 if (c == 'V') mapa.plan[x, y] = '^';
             }*/
             
-        
+        public override void UdelejKrok()
+        {
+            if (count == 1) { count = 0; move(); }
+            else count++;
+
+        }
 
     }
 
