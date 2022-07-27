@@ -90,6 +90,7 @@
             this.Intro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Intro.TabIndex = 3;
             this.Intro.TabStop = false;
+            this.Intro.Click += new System.EventHandler(this.Intro_Click);
             // 
             // Form1
             // 
@@ -99,9 +100,9 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1312, 718);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.Intro);
             this.Controls.Add(this.bAgain);
             this.Controls.Add(this.bNext);
+            this.Controls.Add(this.Intro);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";

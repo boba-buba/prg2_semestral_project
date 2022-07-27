@@ -23,17 +23,21 @@ namespace CSHra
         Mapa mapa;
         Graphics g;
         public int offset = 0;
+        public int mezivysledek = 0;
 
         private void button1_Click(object sender, EventArgs e)
         {
             g = CreateGraphics();
-            if (offset + 1 == System.IO.File.ReadAllLines("plan.txt").Count())
+             
+            if (offset == System.IO.File.ReadAllLines("plan.txt").Count())
             {
                 mapa.stav = Stav.konec;
                 return;
             }
             mapa = new Mapa("plan.txt", "ikonky.png", offset);
-            this.Text = "Zbývá sebrat " + mapa.ZbyvaDiamantu + " diamantů";
+            //this.Text = "Zbývá sebrat " + mapa.pocetDiamantu + "/" +  mapa.ZbyvaDiamantu + " diamantů";
+            //int mezivysledek = 0;
+            this.Text = "Zbývá " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " diamantů";
             offset +=  mapa.offsetLine;
             timer1.Enabled = true;
             button1.Visible = false;
@@ -47,6 +51,13 @@ namespace CSHra
             switch (mapa.stav)
             {
                 case Stav.bezi:
+                    
+                    this.Text = "Zbývá sebrat " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " diamantů";
+                    if ( mezivysledek  != mapa.pocetDiamantu)
+                    {
+                        mezivysledek = mapa.pocetDiamantu;
+
+                    }
                     Intro.Visible = false;
                     bAgain.Visible = false;
                     bNext.Visible = false;
@@ -54,7 +65,7 @@ namespace CSHra
                     this.BackColor = Color.Black;
                     mapa.PohniVsemiPrvky(stisknutaSipka);
                     mapa.VykresliSe(g, ClientSize.Width, ClientSize.Height);
-                    this.Text = "Zbývá sebrat " + mapa.ZbyvaDiamantu + " diamantů";
+                    //this.Text = "Zbývá sebrat " + mapa.ZbyvaDiamantu + " diamantů";
                     break;
                 case Stav.vyhra:
                     Intro.Visible = false;
@@ -129,19 +140,35 @@ namespace CSHra
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            if (mapa.stav == Stav.konec)
+            {
+                bNext.Visible = false;
+                timer1.Enabled = false;
+                bAgain.Visible = true;
+                MessageBox.Show("Konec!");
+            }
+            else
             button1_Click(sender, e);
            
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            offset = 0;
-            button1_Click(sender, e);
+            
+            
+                offset = 0;
+                button1_Click(sender, e);
+            
+            
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Intro_Click(object sender, EventArgs e)
         {
 
         }

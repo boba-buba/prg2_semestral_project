@@ -83,7 +83,7 @@ namespace CSHra
             {
                 mapa.Presun(x, y, nove_x, nove_y); // presune obsah mapy a pokud je tam pohybliny prvek, zmeni mu x a y
             }
-            else if (mapa.JeMince(nove_x, nove_y))
+            else if (mapa.JeMinceHrdina(nove_x, nove_y))
             {
                 mapa.Presun(x, y, nove_x, nove_y);
                 //ZbyvaDiamantu--;
@@ -117,6 +117,7 @@ namespace CSHra
 
         static bool pred = false;
         static bool predRight = false;
+        char previous = ' ';
 
         static char left(char p)
         {
@@ -139,19 +140,26 @@ namespace CSHra
         public override void UdelejKrok()
         {
             char c = mapa.plan[x, y];
+            
             int xPrisera = (polohaTah[c].Item1 + mapa.sirka + x) % mapa.sirka;
             int yPrisera = (polohaTah[c].Item2 + mapa.vyska + y) % mapa.vyska;
 
-            if ((mapa.JeVolno(xPrisera, yPrisera)) || predRight) // Nedosattek podminek
+           
+            if (mapa.JeHrdina(xPrisera, yPrisera)) // ????
             {
-                mapa.plan[x, y] = ' ';
+                mapa.stav = Stav.prohra;
+            }
+            else if (mapa.JeVolno(xPrisera, yPrisera) || predRight || mapa.JeMince(xPrisera, yPrisera)) // Nedosattek podminek
+            {
+                mapa.plan[x, y] = previous;
+                previous = mapa.plan[xPrisera, yPrisera];
                 mapa.plan[xPrisera, yPrisera] = c;
                 x = xPrisera;
                 y = yPrisera;
                 pred = true;
                 predRight = false;
             }
-            else if ( mapa.JeVolno(xPrisera, yPrisera) && pred)
+            else if  (mapa.JeVolno(xPrisera, yPrisera) && pred)
             {
                 mapa.plan[x, y] = right(c);
                 predRight = true;
@@ -162,10 +170,7 @@ namespace CSHra
             {
                 mapa.plan[x, y] = left(c);           
             }
-            else if (mapa.JeHrdina(xPrisera, yPrisera))
-            {
-                mapa.stav = Stav.prohra;
-            }
+            
         }
         //################################################
         /*public override void UdelejKrok()
@@ -286,11 +291,25 @@ namespace CSHra
         {
             if (plan[x, y] == 'c' || plan[x, y] == 'C' || plan[x, y] == 'A')
             {
-                pocetDiamantu++;
-                KonecLevelu();
+                //pocetDiamantu++;
+                //KonecLevelu();
                 return true;
                 
             }
+            
+            return false;
+        }
+
+        public bool JeMinceHrdina(int x, int y)
+        {
+            if (plan[x, y] == 'c' || plan[x, y] == 'C' || plan[x, y] == 'A')
+            {
+                pocetDiamantu++;
+                KonecLevelu();
+                return true;
+
+            }
+
             return false;
         }
 
