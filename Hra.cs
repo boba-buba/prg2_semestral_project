@@ -106,28 +106,90 @@ namespace CSHra
 
             Smer = "<^>V".IndexOf(charSmer);
         }
+        //###################################
+        static Dictionary<char, (int, int)> zpravaZed = new Dictionary<char, (int, int)>()
+        { { '>', (1, 0) }, {'<', (-1, 0)}, {'^', (0, 1)}, {'V', (0, -1)} };
+
+        static Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
+        { { '>', (0, 1) }, {'<', (0, -1)}, {'^', (-1, 0)}, {'V', (1, 0)} };
+
+
+
+        static bool pred = false;
+        static bool predRight = false;
+
+        static char left(char p)
+        {
+            if (p == '>') p = '^';
+            else if (p == '^') p = '<';
+            else if (p == '<') p = 'V';
+            else if (p == 'V') p = '>';
+            return p;
+        }
+
+        static char right(char p)
+        {
+            if (p == '>') p = 'V';
+            else if (p == '^') p = '>';
+            else if (p == '<') p = '^';
+            else if (p == 'V') p = '<';
+            return p;
+        }
+
         public override void UdelejKrok()
         {
-            Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
-            { { '>', (0, 1) }, {'<', (0, -1)}, {'^', (-1, 0)}, {'V', (1, 0)} };
-            //List<(int, int)> kroky = new List<>() { (-1, 0), (0, -1), (1, 0), (0, 1)};
-            //int[,] kroky = new int[4,2] { {-1, 0}, {0, -1}, {1, 0}, {0, 1}};
-
-            //int xPrisera = (kroky[Smer, 0] + mapa.sirka + x) % mapa.sirka;
-            //int yPrisera = (kroky[Smer, 1] + mapa.vyska + y) % mapa.vyska;
             char c = mapa.plan[x, y];
             int xPrisera = (polohaTah[c].Item1 + mapa.sirka + x) % mapa.sirka;
             int yPrisera = (polohaTah[c].Item2 + mapa.vyska + y) % mapa.vyska;
 
+            if ((mapa.JeVolno(xPrisera, yPrisera)) || predRight) // Nedosattek podminek
+            {
+                mapa.plan[x, y] = ' ';
+                mapa.plan[xPrisera, yPrisera] = c;
+                x = xPrisera;
+                y = yPrisera;
+                pred = true;
+                predRight = false;
+            }
+            else if ( mapa.JeVolno(xPrisera, yPrisera) && pred)
+            {
+                mapa.plan[x, y] = right(c);
+                predRight = true;
+                pred = false;
+            }
+
+            else if ( !mapa.JeVolno(xPrisera, yPrisera))
+            {
+                mapa.plan[x, y] = left(c);           
+            }
+            else if (mapa.JeHrdina(xPrisera, yPrisera))
+            {
+                mapa.stav = Stav.prohra;
+            }
+        }
+        //################################################
+        /*public override void UdelejKrok()
+        {
+            Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
+            { { '>', (0, 1) }, {'<', (0, -1)}, {'^', (-1, 0)}, {'V', (1, 0)} };
+            char c = mapa.plan[x, y];
+            int xPrisera = (polohaTah[c].Item1 + mapa.sirka + x) % mapa.sirka;
+            int yPrisera = (polohaTah[c].Item2 + mapa.vyska + y) % mapa.vyska;
+
+
+
             
             if (mapa.JeVolno(xPrisera, yPrisera))
-            {
-                //mapa.Presun(x, y, xPrisera, yPrisera); 
+            { 
                 
                 mapa.plan[x, y] = ' ';
                 mapa.plan[xPrisera, yPrisera] = c;
                 x = xPrisera;
                 y = yPrisera;
+            }
+            else if (mapa.JeHrdina(xPrisera, yPrisera))
+            {
+                mapa.stav = Stav.prohra;
             }
             else
             {
@@ -135,9 +197,9 @@ namespace CSHra
                 if (c == '<') mapa.plan[x, y] = '>';
                 if (c == '^') mapa.plan[x, y] = 'V';
                 if (c == 'V') mapa.plan[x, y] = '^';
-            }
+            }*/
             
-        }
+        
 
     }
 
@@ -396,3 +458,4 @@ namespace CSHra
         }
     }
 }
+
