@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace CSHra
 {
@@ -16,11 +17,13 @@ namespace CSHra
         public Form1()
         {
             InitializeComponent();
+            this.Text = "PACMAN";
             bNext.Visible = false;
             bAgain.Visible = false;
             lResult.Visible = false;
             bAgainLevel.Visible = false;
             pBKonec.Visible = false;
+            lStatus.Visible = false;
 
         }
 
@@ -29,6 +32,9 @@ namespace CSHra
         public int offset = 0;
         public int mezivysledek = 0;
         public int previousOffset = 0;
+        public bool music = true;
+        private SoundPlayer Player = new SoundPlayer();
+
         //public string file = "plan.txt";
         //public char[,] p;
 
@@ -36,8 +42,9 @@ namespace CSHra
         {
             g = CreateGraphics();
             mapa = new Mapa("plan.txt", "ikonky.png", offset);
-            this.Text = "Zbývá " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí";
-            
+            this.Text = "PACMAN";
+            lStatus.Visible = false;
+
             //mapa.plan = p;
             offset +=  mapa.offsetLine;
             timer1.Enabled = true;
@@ -54,8 +61,10 @@ namespace CSHra
             switch (mapa.stav)
             {
                 case Stav.bezi:
-                    
-                    this.Text = "Zbývá sebrat " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí";
+                    this.Text = "PACMAN";
+                    //this.Text = "Zbývá sebrat " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí" + mapa.lives;
+                    lStatus.Text = "Collected " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " coins" + "\nLeft lives "+ mapa.lives;
+                    lStatus.Visible = true;
                     if ( mezivysledek  != mapa.pocetDiamantu)
                     {
                         mezivysledek = mapa.pocetDiamantu;
@@ -73,6 +82,7 @@ namespace CSHra
                     mapa.VykresliSe(g, ClientSize.Width, ClientSize.Height);                   
                     break;
                 case Stav.vyhra:
+                    lStatus.Visible = false;
                     pBKonec.Visible = false;
                     bAgain.Visible = true;
                     bAgainLevel.Visible = true;
@@ -80,20 +90,21 @@ namespace CSHra
                     timer1.Enabled = false;
                     bNext.Visible = true;
                     mezivysledek++;
-                    lResult.Text = "Vyhra!" + " Sebrali jste " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " mincí\n"
-                        + "Zmačkněte NEXT, abyste přešli\n do další úrovně!";
+                    lResult.Text = "Winning!" + " You collected " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " coins\n"
+                        + "Press NEXT to start\n next level!";
                     lResult.Visible = true;
                     break;
                 case Stav.prohra:
                     //p = mapa.plan;
 
+                    lStatus.Visible = false;
                     pBKonec.Visible = false;
                     bAgainLevel.Visible = true;
                     Intro.Visible = false;
                     bNext.Visible = false;
                     timer1.Enabled = false;
                     bAgain.Visible = true;
-                    lResult.Text = "Prohra!" + " Sebrali jste " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " mincí"; // dodat opci pro povtor tehle urovne nebo pro celou hru, jeste jedna button
+                    lResult.Text = "Lost!" + " You collected " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " coins"; // dodat opci pro povtor tehle urovne nebo pro celou hru, jeste jedna button
                     lResult.Visible = true;
                     break;
                 
@@ -153,12 +164,13 @@ namespace CSHra
             if  (offset == System.IO.File.ReadAllLines("plan.txt").Count())
             {
                 pBKonec.Visible = true;
+                lStatus.Visible = false;
                 bAgainLevel.Visible = false;
                 Intro.Visible = false;
                 bNext.Visible = false;
                 timer1.Enabled = false;
                 bAgain.Visible = true;
-                lResult.Text = "Konec! Prošli jste celou hru!\nZmačknutím tlačítka\nAGAIN začněte hru znovu!";
+                lResult.Text = "END! You won all levels!\nPress \nAGAIN to start the whole game again!";
                 lResult.Visible = true;
             }
             else
@@ -194,6 +206,22 @@ namespace CSHra
         {
             offset = offset - mapa.offsetLine;
             button1_Click(sender, e);
+        }
+
+        private void bMusic_Click(object sender, EventArgs e)
+        {
+            /*if (music)
+            {
+                string p = "music.wav".Path;
+                this.Player.SoundLocation = @"Resources\music.wav";
+                //this.Player.Load();
+                this.Player.PlayLooping();
+            }
+            else
+            {
+                this.Player.Stop();
+                music = !music;
+            }*/
         }
     }
 }

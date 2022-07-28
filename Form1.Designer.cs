@@ -37,6 +37,9 @@
             this.bAgainLevel = new System.Windows.Forms.Button();
             this.pBKonec = new System.Windows.Forms.PictureBox();
             this.Intro = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lStatus = new System.Windows.Forms.Label();
+            this.bMusic = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pBKonec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Intro)).BeginInit();
             this.SuspendLayout();
@@ -92,7 +95,7 @@
             this.lResult.ForeColor = System.Drawing.Color.Yellow;
             this.lResult.Location = new System.Drawing.Point(371, 23);
             this.lResult.Name = "lResult";
-            this.lResult.Size = new System.Drawing.Size(143, 40);
+            this.lResult.Size = new System.Drawing.Size(139, 39);
             this.lResult.TabIndex = 4;
             this.lResult.Text = "label1";
             this.lResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -131,6 +134,39 @@
             this.Intro.TabStop = false;
             this.Intro.Click += new System.EventHandler(this.Intro_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "label1";
+            // 
+            // lStatus
+            // 
+            this.lStatus.AutoSize = true;
+            this.lStatus.Font = new System.Drawing.Font("Stencil", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lStatus.ForeColor = System.Drawing.Color.Yellow;
+            this.lStatus.Location = new System.Drawing.Point(3, 0);
+            this.lStatus.Name = "lStatus";
+            this.lStatus.Size = new System.Drawing.Size(104, 29);
+            this.lStatus.TabIndex = 8;
+            this.lStatus.Text = "label2";
+            // 
+            // bMusic
+            // 
+            this.bMusic.BackColor = System.Drawing.Color.Black;
+            this.bMusic.Font = new System.Drawing.Font("Stencil", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bMusic.ForeColor = System.Drawing.Color.Yellow;
+            this.bMusic.Location = new System.Drawing.Point(1159, 6);
+            this.bMusic.Name = "bMusic";
+            this.bMusic.Size = new System.Drawing.Size(141, 37);
+            this.bMusic.TabIndex = 9;
+            this.bMusic.Text = "music";
+            this.bMusic.UseVisualStyleBackColor = false;
+            this.bMusic.Click += new System.EventHandler(this.bMusic_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -138,6 +174,9 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1312, 718);
+            this.Controls.Add(this.bMusic);
+            this.Controls.Add(this.lStatus);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pBKonec);
             this.Controls.Add(this.bAgainLevel);
             this.Controls.Add(this.lResult);
@@ -168,6 +207,9 @@
         private System.Windows.Forms.Label lResult;
         private System.Windows.Forms.Button bAgainLevel;
         private System.Windows.Forms.PictureBox pBKonec;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lStatus;
+        private System.Windows.Forms.Button bMusic;
     }
 }
 
