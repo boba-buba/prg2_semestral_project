@@ -402,7 +402,7 @@ namespace CSHra
             {
                 this.sx = bmp.Height;
                 int pocet = bmp.Width / sx; // predpokladam, ze to jsou kosticky v rade
-                Console.WriteLine(pocet);
+                //Console.WriteLine(pocet);
                 ikonky = new Bitmap[pocet];
                 for (int i = 0; i < pocet; i++)
                 {
