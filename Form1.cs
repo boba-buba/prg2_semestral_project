@@ -29,13 +29,16 @@ namespace CSHra
         public int offset = 0;
         public int mezivysledek = 0;
         public int previousOffset = 0;
+        //public string file = "plan.txt";
+        //public char[,] p;
 
         private void button1_Click(object sender, EventArgs e)
         {
             g = CreateGraphics();
             mapa = new Mapa("plan.txt", "ikonky.png", offset);
             this.Text = "Zbývá " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí";
-            //previousOffset = offset;
+            
+            //mapa.plan = p;
             offset +=  mapa.offsetLine;
             timer1.Enabled = true;
             button1.Visible = false;
@@ -82,6 +85,8 @@ namespace CSHra
                     lResult.Visible = true;
                     break;
                 case Stav.prohra:
+                    //p = mapa.plan;
+
                     pBKonec.Visible = false;
                     bAgainLevel.Visible = true;
                     Intro.Visible = false;

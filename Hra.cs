@@ -88,7 +88,13 @@ namespace CSHra
 
             }
             else if (mapa.JePrisera(nove_x, nove_y))
-                mapa.stav = Stav.prohra;
+            {
+                mapa.lives--;
+                if (mapa.lives == 0) mapa.stav = Stav.prohra;
+                // ??????????
+
+            }
+                
             else return;
 
         }
@@ -142,7 +148,12 @@ namespace CSHra
            
             if (mapa.JeHrdina(xPrisera, yPrisera))
             {
-                mapa.stav = Stav.prohra;
+                mapa.lives--;
+                if (mapa.lives == 0) mapa.stav = Stav.prohra;
+                else
+                {
+                    mapa.plan[x, y] = left(c);
+                }
             }
             else if (mapa.JeVolno(xPrisera, yPrisera) || predRight || mapa.JeMince(xPrisera, yPrisera)) // Nedosattek podminek
             {
@@ -217,6 +228,7 @@ namespace CSHra
         public int ZbyvaDiamantu;
         public int pocetDiamantu;
         public int offsetLine;
+        public int lives = 3;
 
         public Stav stav = Stav.nezacala;
 
@@ -390,6 +402,7 @@ namespace CSHra
             {
                 this.sx = bmp.Height;
                 int pocet = bmp.Width / sx; // predpokladam, ze to jsou kosticky v rade
+                Console.WriteLine(pocet);
                 ikonky = new Bitmap[pocet];
                 for (int i = 0; i < pocet; i++)
                 {
@@ -431,7 +444,7 @@ namespace CSHra
                     int my = dy + y; // index do mapy
 
                     char c = plan[mx, my];
-                    int indexObrazku = "RLUD vhu(n)c1234<>^VCA".IndexOf(c); // 0..
+                    int indexObrazku = "RLUD vhu(n)c1234<>^VCAHqwer5678".IndexOf(c); // 0..
                     
                     g.DrawImage(ikonky[indexObrazku], x * sx, y * sx); 
                 }
