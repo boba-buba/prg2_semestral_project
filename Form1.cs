@@ -19,22 +19,28 @@ namespace CSHra
             bNext.Visible = false;
             bAgain.Visible = false;
             lResult.Visible = false;
+            bAgainLevel.Visible = false;
+            pBKonec.Visible = false;
+
         }
 
         Mapa mapa;
         Graphics g;
         public int offset = 0;
         public int mezivysledek = 0;
+        public int previousOffset = 0;
 
         private void button1_Click(object sender, EventArgs e)
         {
             g = CreateGraphics();
             mapa = new Mapa("plan.txt", "ikonky.png", offset);
             this.Text = "Zbývá " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí";
+            //previousOffset = offset;
             offset +=  mapa.offsetLine;
             timer1.Enabled = true;
             button1.Visible = false;
             lResult.Visible = false;
+            pBKonec.Visible = false;
 
 
         }
@@ -55,12 +61,18 @@ namespace CSHra
                     Intro.Visible = false;
                     bAgain.Visible = false;
                     bNext.Visible = false;
+                    bAgainLevel.Visible = false;
+                    pBKonec.Visible = false;
+
                     this.BackgroundImage = null;
                     this.BackColor = Color.Black;
                     mapa.PohniVsemiPrvky(stisknutaSipka);
                     mapa.VykresliSe(g, ClientSize.Width, ClientSize.Height);                   
                     break;
                 case Stav.vyhra:
+                    pBKonec.Visible = false;
+                    bAgain.Visible = true;
+                    bAgainLevel.Visible = true;
                     Intro.Visible = false;
                     timer1.Enabled = false;
                     bNext.Visible = true;
@@ -70,6 +82,8 @@ namespace CSHra
                     lResult.Visible = true;
                     break;
                 case Stav.prohra:
+                    pBKonec.Visible = false;
+                    bAgainLevel.Visible = true;
                     Intro.Visible = false;
                     bNext.Visible = false;
                     timer1.Enabled = false;
@@ -133,6 +147,8 @@ namespace CSHra
         {
             if  (offset == System.IO.File.ReadAllLines("plan.txt").Count())
             {
+                pBKonec.Visible = true;
+                bAgainLevel.Visible = false;
                 Intro.Visible = false;
                 bNext.Visible = false;
                 timer1.Enabled = false;
@@ -148,8 +164,9 @@ namespace CSHra
         private void button2_Click_1(object sender, EventArgs e)
         {
 
-                offset = 0; // dodat offset pro uroven nebo tlacitko nove
-                button1_Click(sender, e);
+            offset = 0; // dodat offset pro uroven nebo tlacitko nove
+            //offset =- mapa.offsetLine;
+            button1_Click(sender, e);
 
         }
 
@@ -166,6 +183,12 @@ namespace CSHra
         private void lResult_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void bAgainLevel_Click(object sender, EventArgs e)
+        {
+            offset = offset - mapa.offsetLine;
+            button1_Click(sender, e);
         }
     }
 }

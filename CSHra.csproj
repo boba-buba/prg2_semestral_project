@@ -91,6 +91,7 @@
     <Content Include="plan.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\stray-kids-lee-know.gif" />
     <None Include="Resources\intro.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -33,8 +33,11 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.bNext = new System.Windows.Forms.Button();
             this.bAgain = new System.Windows.Forms.Button();
-            this.Intro = new System.Windows.Forms.PictureBox();
             this.lResult = new System.Windows.Forms.Label();
+            this.bAgainLevel = new System.Windows.Forms.Button();
+            this.pBKonec = new System.Windows.Forms.PictureBox();
+            this.Intro = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pBKonec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Intro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +64,7 @@
             this.bNext.BackColor = System.Drawing.Color.Black;
             this.bNext.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bNext.ForeColor = System.Drawing.Color.Yellow;
-            this.bNext.Location = new System.Drawing.Point(551, 360);
+            this.bNext.Location = new System.Drawing.Point(551, 196);
             this.bNext.Name = "bNext";
             this.bNext.Size = new System.Drawing.Size(200, 104);
             this.bNext.TabIndex = 1;
@@ -74,24 +77,13 @@
             this.bAgain.BackColor = System.Drawing.Color.Black;
             this.bAgain.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bAgain.ForeColor = System.Drawing.Color.Yellow;
-            this.bAgain.Location = new System.Drawing.Point(551, 196);
+            this.bAgain.Location = new System.Drawing.Point(255, 196);
             this.bAgain.Name = "bAgain";
             this.bAgain.Size = new System.Drawing.Size(200, 104);
             this.bAgain.TabIndex = 2;
             this.bAgain.Text = "AGAIN";
             this.bAgain.UseVisualStyleBackColor = false;
             this.bAgain.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // Intro
-            // 
-            this.Intro.Image = global::CSHra.Properties.Resources.intro;
-            this.Intro.Location = new System.Drawing.Point(135, -1);
-            this.Intro.Name = "Intro";
-            this.Intro.Size = new System.Drawing.Size(1044, 580);
-            this.Intro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Intro.TabIndex = 3;
-            this.Intro.TabStop = false;
-            this.Intro.Click += new System.EventHandler(this.Intro_Click);
             // 
             // lResult
             // 
@@ -106,6 +98,39 @@
             this.lResult.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lResult.Click += new System.EventHandler(this.lResult_Click);
             // 
+            // bAgainLevel
+            // 
+            this.bAgainLevel.BackColor = System.Drawing.Color.Black;
+            this.bAgainLevel.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bAgainLevel.ForeColor = System.Drawing.Color.Yellow;
+            this.bAgainLevel.Location = new System.Drawing.Point(863, 175);
+            this.bAgainLevel.Name = "bAgainLevel";
+            this.bAgainLevel.Size = new System.Drawing.Size(218, 146);
+            this.bAgainLevel.TabIndex = 5;
+            this.bAgainLevel.Text = "Again Prevoius level";
+            this.bAgainLevel.UseVisualStyleBackColor = false;
+            this.bAgainLevel.Click += new System.EventHandler(this.bAgainLevel_Click);
+            // 
+            // pBKonec
+            // 
+            this.pBKonec.Image = global::CSHra.Properties.Resources.stray_kids_lee_know;
+            this.pBKonec.Location = new System.Drawing.Point(493, 175);
+            this.pBKonec.Name = "pBKonec";
+            this.pBKonec.Size = new System.Drawing.Size(699, 340);
+            this.pBKonec.TabIndex = 6;
+            this.pBKonec.TabStop = false;
+            // 
+            // Intro
+            // 
+            this.Intro.Image = global::CSHra.Properties.Resources.intro;
+            this.Intro.Location = new System.Drawing.Point(162, -2);
+            this.Intro.Name = "Intro";
+            this.Intro.Size = new System.Drawing.Size(1044, 580);
+            this.Intro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Intro.TabIndex = 3;
+            this.Intro.TabStop = false;
+            this.Intro.Click += new System.EventHandler(this.Intro_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -113,6 +138,8 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1312, 718);
+            this.Controls.Add(this.pBKonec);
+            this.Controls.Add(this.bAgainLevel);
             this.Controls.Add(this.lResult);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.bAgain);
@@ -124,6 +151,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.pBKonec)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Intro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,6 +166,8 @@
         private System.Windows.Forms.Button bAgain;
         private System.Windows.Forms.PictureBox Intro;
         private System.Windows.Forms.Label lResult;
+        private System.Windows.Forms.Button bAgainLevel;
+        private System.Windows.Forms.PictureBox pBKonec;
     }
 }
 
