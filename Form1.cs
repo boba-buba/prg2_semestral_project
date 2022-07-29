@@ -23,6 +23,8 @@ namespace CSHra
             lResult.Visible = false;
             bAgainLevel.Visible = false;
             pBKonec.Visible = false;
+            pBWin.Visible = false;
+            pBLost.Visible = false;
             lStatus.Visible = false;
 
         }
@@ -32,7 +34,7 @@ namespace CSHra
         public int offset = 0;
         public int mezivysledek = 0;
         public int previousOffset = 0;
-        public bool music = true;
+        public bool music = false;
         private SoundPlayer Player = new SoundPlayer();
 
         //public string file = "plan.txt";
@@ -51,6 +53,9 @@ namespace CSHra
             button1.Visible = false;
             lResult.Visible = false;
             pBKonec.Visible = false;
+            pBWin.Visible = false;
+            pBLost.Visible = false;
+
 
 
         }
@@ -75,6 +80,9 @@ namespace CSHra
                     bNext.Visible = false;
                     bAgainLevel.Visible = false;
                     pBKonec.Visible = false;
+                    pBWin.Visible = false;
+                    pBLost.Visible = false;
+
 
                     this.BackgroundImage = null;
                     this.BackColor = Color.Black;
@@ -84,6 +92,8 @@ namespace CSHra
                 case Stav.vyhra:
                     lStatus.Visible = false;
                     pBKonec.Visible = false;
+                    pBWin.Visible = true;
+                    pBLost.Visible = false;
                     bAgain.Visible = true;
                     bAgainLevel.Visible = true;
                     Intro.Visible = false;
@@ -96,7 +106,8 @@ namespace CSHra
                     break;
                 case Stav.prohra:
                     //p = mapa.plan;
-
+                    pBWin.Visible = false;
+                    pBLost.Visible = true;
                     lStatus.Visible = false;
                     pBKonec.Visible = false;
                     bAgainLevel.Visible = true;
@@ -164,6 +175,8 @@ namespace CSHra
             if  (offset == System.IO.File.ReadAllLines("plan.txt").Count())
             {
                 pBKonec.Visible = true;
+                pBLost.Visible = false;
+                pBWin.Visible = false;
                 lStatus.Visible = false;
                 bAgainLevel.Visible = false;
                 Intro.Visible = false;
@@ -209,7 +222,8 @@ namespace CSHra
         }
 
         private void bMusic_Click(object sender, EventArgs e)
-        {
+        {      
+            
             /*if (music)
             {
                 string p = "music.wav".Path;
@@ -222,6 +236,23 @@ namespace CSHra
                 this.Player.Stop();
                 music = !music;
             }*/
+        }
+
+        string m = "stop";
+        private void bStop_Click(object sender, EventArgs e)
+        {
+            if (bStop.Text == "stop")
+            {
+                m = "continue";
+                timer1.Enabled = false;
+            }
+            if (bStop.Text == "continue")
+            {
+                m = "stop";
+                timer1.Enabled = true;
+            }
+            bStop.Text = m;
+            
         }
     }
 }

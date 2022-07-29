@@ -1,58 +1,45 @@
-20
-14
-                    
-hhhhhhhhhhhhhhhhhhhh
-cvcccccccCccccHccccc
-c1hhhhhh)c2hhhhhhh3c
-ccAcccccccvcccccccvc
-2hhhhhhh)cvc(hhhhh4c
-vcccccc8ccvccccccccc
-1hhh)c2h3c1hhhhhhhhh
-RHccccvcvccccccccccc
-hhhh3cvc1hhhhh3ccc2h
-ccccvcvcccAcccvcncvc
-ncncvcvc(hhh3cvcvcvc
-vc1h4cv^ccccvcucvcvc
-vccCcc1hh3ccvccc1h4c
+22
+16
+                      
+2hhhhhhhhhhhhhhhhhhhh3
+vccHccccc^Cccccccccccv
+vc(hhhhhh)c2hhhhhhh3cv
+u8cAcccccccvcccccccvHv
+2hhhhhhhh)cvc(hhhhh4cv
+vccccccccccvcccccccccv
+1hhhhhhhh3c1hhhhhhh)cu
+R cccccccvcccccccccccc 
+2hhhh3cnc1hhhhh3cnc2h3
+vccccvcvcccAcccvcvcvcv
+vccccvcvc(hhh3cvcvcvcv
+vc(hh4cvVccccvcvcvcvcv
+vcccCcc1hh)cc1h4c1h4cv
+vcccccHccccccccccccc8v
+1hhhhhhhhhhhhhhhhhhhh4
 47
 25
                                                
 2hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh3
-vccccccccvcccuccvcccccccccccccccccccccccccccccv
-vc2hhhh3cvcnccccvc2hhhhhhh3c2hhhhhhhh3c23cccncv
-vcvccccvcvc1hhhh4cvcccccccvcvccccccccvcv13ccvcv
-vcvc23cvcvccccccccvc2hhh3cvcvccccccccvcvcvccvcv
+vccccccccnccccccccccccccccccccccccccccccccccccv
+vc2hhhh3cvcnccccnc2hhhhhhh3c2hhhhhhhh3c23cccnVv
+vcv<cccvcvc1hhhh4cvcccccccvcvccccccccvcv13ccvcv
+vcvc23cvcvcccccAccvc2hhh3cvcvccccccccvcvcvccvcv
 vcvc14cvc1hhhhhh3cvcvcccvcvcvc2hhhhhh4cvc13cvcv
-vcvccccvccccccccvcvc1h)cvcvcvcvccccccccvccvcvcv
+vcvccccvccccccccvcvc1h)cvcvcvcvHcccccccvccvcvcv
 vcvc(hh4c2hhhh3cvcvcccccvcvcvcvc2hhhh3cvcc13vcv
-vcvccccccvccccvcvc1hhhhh4cvcucvcvccccvcvccc1vcv
-vcvc2hh3cvc23cvcvcccccccccvcccvcvc23cvcvccccvcv
-vcvcvccvcvcvvcvc1hhhhhhhhh4c2h4cvcvvcvcvccccvcv
-ucucvccvcvc14cvcccccccccccc(4cccvc14cvcuccccucv
+vcvccccccv<cccvcvc1hhhhh4cvcucvcvccccvcvccc1vcv
+vcvc2hh3cvc23cvcvccccHccccvcccvcvc23cvcvccccvAv
+vcvcvccvcvcvvcvc1hhhhhhhhh4c(h4cvcvvcvcvccccvcv
+ucucvccvcvc14cvcccccccccccc8ccccvc14cvcuccccucv
  cRcvccvcvccccvc2hhhh3cnc23cc23cvccccvccccccccc
-2h)cvccvcvc(hhvcvccccvcvcv1324vcvhh)cvc2hhhhhh3
+2h)cvccvcvc(h)vcvccccvcvcv1324vcv(h)cvc2hhhhhh3
 vcccvccvcvccccvcvc(3cvcvcvc14cvcvccccvcvccccccv
 vc(h4ccvcvc23cvcvccvcucvcvccccvcvc23cvcvc2hh3cv
-vccccccvcuc14cucvccvcccvcvccccvcuc14cucvcvccvcv
-vc(hh3cvccccccccvccvhhhvcvccccvccccccccvcvccvcv
-vccccvc1hhhhhh3cvccvcccvcv    vc2hhhhhh4cvccvcv
-(hhhh4ccccccccvcvc(4cncvcv    vcvcccccccc1)cvcv
-ncccccccccccccvcvccccvcvcv    vcvcccccccccccvcv
+vccccccvcuc14cucvccucccvcvccccvcuc14cucvcvccvcv
+vc(hh3cvccccccccvcc(hh)vcvccccvccccccccvcvccvcv
+vccccvc1hhhhhh3cvccncccvcvH   vc2hhhhhh4cvccvcv
+v(hhh4ccccccccvcvc(4cncvcv    vcvcccccccc1)cvcv
+vccccc5cccccccvcvccccvcvcv    vcvcccHcccccccvcv
 v(hhhhhhhhhhhh4c1hhhh4c1h4    uc1hhhhhhhhhhh4cv
-v                                            <v
+vcccccccccccccccccccccHcccccccccccccccccccccc^v
 1hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh4
-4
-5
-HHH 
-c  8
-R  A
-cccc
-ccch
-5
-6
-HHH  
-   c 
-hh3c 
- ^uc 
-   c 
-C  cR

@@ -173,7 +173,7 @@ namespace CSHra
                     mapa.plan[x, y] = left(c);
                 }
             }
-            else if (mapa.JeVolno(xPrisera, yPrisera) || predRight || mapa.JeMince(xPrisera, yPrisera) || mapa.JeZivot(xPrisera, yPrisera)) // Nedosattek podminek
+            else if ((mapa.JeVolno(xPrisera, yPrisera) || mapa.JeMince(xPrisera, yPrisera) || mapa.JeZivot(xPrisera, yPrisera)) || predRight) // Nedosattek podminek
             {
                 mapa.plan[x, y] = previous;
                 previous = mapa.plan[xPrisera, yPrisera];
@@ -192,7 +192,7 @@ namespace CSHra
 
             else if ( !mapa.JeVolno(xPrisera, yPrisera))
             {
-                mapa.plan[x, y] = left(c);           
+               mapa.plan[x, y] = left(c);           
             }
             
         }
@@ -200,8 +200,9 @@ namespace CSHra
             
         public override void UdelejKrok()
         {
-            if (count == 1) { count = 0; move(); }
-            else count++;
+            move();
+            //if (count == 1) { count = 0; move(); }
+            //else count++;
         }
 
     }
@@ -229,16 +230,16 @@ namespace CSHra
         {
             Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
             { { '5', (0, 1) }, {'6', (0, -1)}, {'7', (-1, 0)}, {'8', (1, 0)} };
-            char c = mapa.plan[x, y];
-            int xPrisera = (polohaTah[c].Item1 + mapa.sirka + x) % mapa.sirka;
-            int yPrisera = (polohaTah[c].Item2 + mapa.vyska + y) % mapa.vyska;
+            char c2 = mapa.plan[x, y];
+            int xPrisera = (polohaTah[c2].Item1 + mapa.sirka + x) % mapa.sirka;
+            int yPrisera = (polohaTah[c2].Item2 + mapa.vyska + y) % mapa.vyska;
 
 
             if (mapa.JeVolno(xPrisera, yPrisera) || mapa.JeMince(xPrisera, yPrisera) || mapa.JeZivot(xPrisera, yPrisera))
             {     
                 mapa.plan[x, y] = previous;
                 previous = mapa.plan[xPrisera, yPrisera];
-                mapa.plan[xPrisera, yPrisera] = c;
+                mapa.plan[xPrisera, yPrisera] = c2;
                 x = xPrisera;
                 y = yPrisera;
 
@@ -247,11 +248,11 @@ namespace CSHra
             {
                 mapa.lives--;
                 if (mapa.lives == 0) mapa.stav = Stav.prohra;
-                mapa.plan[x, y] = Otocse(c);
+                mapa.plan[x, y] = Otocse(c2);
             }
             else
             {
-                mapa.plan[x, y] = Otocse(c);
+                mapa.plan[x, y] = Otocse(c2);
             }
         }
     
@@ -373,7 +374,11 @@ namespace CSHra
             return JePriseraChytra(x, y) || JePriseraHloupa(x, y);
         }
  
-
+        public bool JeZed(int x, int y)
+        {
+            string s = Convert.ToString(plan[x, y]);
+            return "vhu(n)1234".Contains(s);
+        }
         public void KonecLevelu()
         {
             if (pocetDiamantu == ZbyvaDiamantu)

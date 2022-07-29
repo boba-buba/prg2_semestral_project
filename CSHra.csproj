@@ -91,6 +91,8 @@
     <Content Include="plan.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\lost.gif" />
+    <None Include="Resources\tenor.gif" />
     <None Include="Resources\stray-kids-lee-know.gif" />
     <None Include="Resources\intro.jpg" />
   </ItemGroup>

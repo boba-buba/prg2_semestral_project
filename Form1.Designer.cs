@@ -35,11 +35,16 @@
             this.bAgain = new System.Windows.Forms.Button();
             this.lResult = new System.Windows.Forms.Label();
             this.bAgainLevel = new System.Windows.Forms.Button();
-            this.pBKonec = new System.Windows.Forms.PictureBox();
-            this.Intro = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lStatus = new System.Windows.Forms.Label();
             this.bMusic = new System.Windows.Forms.Button();
+            this.pBLost = new System.Windows.Forms.PictureBox();
+            this.pBWin = new System.Windows.Forms.PictureBox();
+            this.pBKonec = new System.Windows.Forms.PictureBox();
+            this.Intro = new System.Windows.Forms.PictureBox();
+            this.bStop = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pBLost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBWin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBKonec)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Intro)).BeginInit();
             this.SuspendLayout();
@@ -67,11 +72,11 @@
             this.bNext.BackColor = System.Drawing.Color.Black;
             this.bNext.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bNext.ForeColor = System.Drawing.Color.Yellow;
-            this.bNext.Location = new System.Drawing.Point(551, 196);
+            this.bNext.Location = new System.Drawing.Point(255, 334);
             this.bNext.Name = "bNext";
             this.bNext.Size = new System.Drawing.Size(200, 104);
             this.bNext.TabIndex = 1;
-            this.bNext.Text = "Next";
+            this.bNext.Text = "Next level";
             this.bNext.UseVisualStyleBackColor = false;
             this.bNext.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -80,11 +85,11 @@
             this.bAgain.BackColor = System.Drawing.Color.Black;
             this.bAgain.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bAgain.ForeColor = System.Drawing.Color.Yellow;
-            this.bAgain.Location = new System.Drawing.Point(255, 196);
+            this.bAgain.Location = new System.Drawing.Point(255, 170);
             this.bAgain.Name = "bAgain";
-            this.bAgain.Size = new System.Drawing.Size(200, 104);
+            this.bAgain.Size = new System.Drawing.Size(200, 130);
             this.bAgain.TabIndex = 2;
-            this.bAgain.Text = "AGAIN";
+            this.bAgain.Text = "AGAIN whole game";
             this.bAgain.UseVisualStyleBackColor = false;
             this.bAgain.Click += new System.EventHandler(this.button2_Click_1);
             // 
@@ -93,7 +98,7 @@
             this.lResult.AutoSize = true;
             this.lResult.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lResult.ForeColor = System.Drawing.Color.Yellow;
-            this.lResult.Location = new System.Drawing.Point(371, 23);
+            this.lResult.Location = new System.Drawing.Point(368, 33);
             this.lResult.Name = "lResult";
             this.lResult.Size = new System.Drawing.Size(139, 39);
             this.lResult.TabIndex = 4;
@@ -106,33 +111,13 @@
             this.bAgainLevel.BackColor = System.Drawing.Color.Black;
             this.bAgainLevel.Font = new System.Drawing.Font("Stencil", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bAgainLevel.ForeColor = System.Drawing.Color.Yellow;
-            this.bAgainLevel.Location = new System.Drawing.Point(863, 175);
+            this.bAgainLevel.Location = new System.Drawing.Point(240, 502);
             this.bAgainLevel.Name = "bAgainLevel";
-            this.bAgainLevel.Size = new System.Drawing.Size(218, 146);
+            this.bAgainLevel.Size = new System.Drawing.Size(215, 146);
             this.bAgainLevel.TabIndex = 5;
             this.bAgainLevel.Text = "Again Prevoius level";
             this.bAgainLevel.UseVisualStyleBackColor = false;
             this.bAgainLevel.Click += new System.EventHandler(this.bAgainLevel_Click);
-            // 
-            // pBKonec
-            // 
-            this.pBKonec.Image = global::CSHra.Properties.Resources.stray_kids_lee_know;
-            this.pBKonec.Location = new System.Drawing.Point(493, 175);
-            this.pBKonec.Name = "pBKonec";
-            this.pBKonec.Size = new System.Drawing.Size(699, 340);
-            this.pBKonec.TabIndex = 6;
-            this.pBKonec.TabStop = false;
-            // 
-            // Intro
-            // 
-            this.Intro.Image = global::CSHra.Properties.Resources.intro;
-            this.Intro.Location = new System.Drawing.Point(162, -2);
-            this.Intro.Name = "Intro";
-            this.Intro.Size = new System.Drawing.Size(1044, 580);
-            this.Intro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Intro.TabIndex = 3;
-            this.Intro.TabStop = false;
-            this.Intro.Click += new System.EventHandler(this.Intro_Click);
             // 
             // label1
             // 
@@ -167,13 +152,68 @@
             this.bMusic.UseVisualStyleBackColor = false;
             this.bMusic.Click += new System.EventHandler(this.bMusic_Click);
             // 
+            // pBLost
+            // 
+            this.pBLost.Image = global::CSHra.Properties.Resources.lost;
+            this.pBLost.Location = new System.Drawing.Point(509, 180);
+            this.pBLost.Name = "pBLost";
+            this.pBLost.Size = new System.Drawing.Size(730, 459);
+            this.pBLost.TabIndex = 11;
+            this.pBLost.TabStop = false;
+            // 
+            // pBWin
+            // 
+            this.pBWin.Image = global::CSHra.Properties.Resources.tenor;
+            this.pBWin.Location = new System.Drawing.Point(596, 170);
+            this.pBWin.Name = "pBWin";
+            this.pBWin.Size = new System.Drawing.Size(503, 479);
+            this.pBWin.TabIndex = 10;
+            this.pBWin.TabStop = false;
+            // 
+            // pBKonec
+            // 
+            this.pBKonec.Image = global::CSHra.Properties.Resources.stray_kids_lee_know;
+            this.pBKonec.Location = new System.Drawing.Point(494, 170);
+            this.pBKonec.Name = "pBKonec";
+            this.pBKonec.Size = new System.Drawing.Size(699, 340);
+            this.pBKonec.TabIndex = 6;
+            this.pBKonec.TabStop = false;
+            // 
+            // Intro
+            // 
+            this.Intro.Image = global::CSHra.Properties.Resources.intro;
+            this.Intro.Location = new System.Drawing.Point(162, -2);
+            this.Intro.Name = "Intro";
+            this.Intro.Size = new System.Drawing.Size(1044, 580);
+            this.Intro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Intro.TabIndex = 3;
+            this.Intro.TabStop = false;
+            this.Intro.Click += new System.EventHandler(this.Intro_Click);
+            // 
+            // bStop
+            // 
+            this.bStop.BackColor = System.Drawing.Color.Black;
+            this.bStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bStop.Font = new System.Drawing.Font("Stencil", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bStop.ForeColor = System.Drawing.Color.Yellow;
+            this.bStop.Location = new System.Drawing.Point(964, 6);
+            this.bStop.Name = "bStop";
+            this.bStop.Size = new System.Drawing.Size(189, 37);
+            this.bStop.TabIndex = 12;
+            this.bStop.Text = "stop";
+            this.bStop.UseVisualStyleBackColor = false;
+            this.bStop.Click += new System.EventHandler(this.bStop_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1312, 718);
+            this.ClientSize = new System.Drawing.Size(1391, 718);
+            this.Controls.Add(this.bStop);
+            this.Controls.Add(this.pBLost);
+            this.Controls.Add(this.pBWin);
             this.Controls.Add(this.bMusic);
             this.Controls.Add(this.lStatus);
             this.Controls.Add(this.label1);
@@ -190,6 +230,8 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.pBLost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBWin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBKonec)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Intro)).EndInit();
             this.ResumeLayout(false);
@@ -210,6 +252,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lStatus;
         private System.Windows.Forms.Button bMusic;
+        private System.Windows.Forms.PictureBox pBWin;
+        private System.Windows.Forms.PictureBox pBLost;
+        private System.Windows.Forms.Button bStop;
     }
 }
 
