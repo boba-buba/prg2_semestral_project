@@ -26,6 +26,7 @@ namespace CSHra
             pBWin.Visible = false;
             pBLost.Visible = false;
             lStatus.Visible = false;
+            bStop.Visible = false;
 
         }
 
@@ -79,6 +80,7 @@ namespace CSHra
                     bAgain.Visible = false;
                     bNext.Visible = false;
                     bAgainLevel.Visible = false;
+                    bStop.Visible = true;
                     pBKonec.Visible = false;
                     pBWin.Visible = false;
                     pBLost.Visible = false;
@@ -99,6 +101,7 @@ namespace CSHra
                     Intro.Visible = false;
                     timer1.Enabled = false;
                     bNext.Visible = true;
+                    bStop.Visible = false;
                     mezivysledek++;
                     lResult.Text = "Winning!" + " You collected " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " coins\n"
                         + "Press NEXT to start\n next level!";
@@ -115,6 +118,7 @@ namespace CSHra
                     bNext.Visible = false;
                     timer1.Enabled = false;
                     bAgain.Visible = true;
+                    bStop.Visible = false;
                     lResult.Text = "Lost!" + " You collected " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " coins"; // dodat opci pro povtor tehle urovne nebo pro celou hru, jeste jedna button
                     lResult.Visible = true;
                     break;
@@ -175,6 +179,7 @@ namespace CSHra
             if  (offset == System.IO.File.ReadAllLines("plan.txt").Count())
             {
                 pBKonec.Visible = true;
+                bStop.Visible = false;
                 pBLost.Visible = false;
                 pBWin.Visible = false;
                 lStatus.Visible = false;
@@ -245,6 +250,7 @@ namespace CSHra
             {
                 m = "continue";
                 timer1.Enabled = false;
+                // neco tady dat 
             }
             if (bStop.Text == "continue")
             {
