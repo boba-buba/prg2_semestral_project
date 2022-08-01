@@ -265,9 +265,7 @@ namespace CSHra
                mapa.plan[x, y] = left(c);           
             }
             
-        }
-        
-            
+        }         
         public override void UdelejKrok()
         {
             move();
@@ -331,15 +329,7 @@ namespace CSHra
                 if (mapa.lives == 0) mapa.stav = Stav.prohra;
                 else
                 {
-                    mapa.plan[xPrisera, yPrisera] = ' ';
-                    mapa.hrdina.x = mapa.hrdina.zacX;
-                    mapa.hrdina.y = mapa.hrdina.zacY;
-                    mapa.plan[mapa.hrdina.zacX, mapa.hrdina.zacY] = 'R';
-                    
-                    foreach (PohyblivyPrvek p in mapa.PohyblivePrvkyKromeHrdiny)
-                    {
-                        p.VratNaZacatek();
-                    }
+                    mapa.hrdina.VratNaZacatek();
                 }
             }
             else

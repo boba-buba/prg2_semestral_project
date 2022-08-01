@@ -37,7 +37,6 @@
             this.bAgainLevel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lStatus = new System.Windows.Forms.Label();
-            this.bMusic = new System.Windows.Forms.Button();
             this.pBLost = new System.Windows.Forms.PictureBox();
             this.pBWin = new System.Windows.Forms.PictureBox();
             this.pBKonec = new System.Windows.Forms.PictureBox();
@@ -139,19 +138,6 @@
             this.lStatus.TabIndex = 8;
             this.lStatus.Text = "label2";
             // 
-            // bMusic
-            // 
-            this.bMusic.BackColor = System.Drawing.Color.Black;
-            this.bMusic.Font = new System.Drawing.Font("Stencil", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bMusic.ForeColor = System.Drawing.Color.Yellow;
-            this.bMusic.Location = new System.Drawing.Point(1159, 6);
-            this.bMusic.Name = "bMusic";
-            this.bMusic.Size = new System.Drawing.Size(141, 37);
-            this.bMusic.TabIndex = 9;
-            this.bMusic.Text = "music";
-            this.bMusic.UseVisualStyleBackColor = false;
-            this.bMusic.Click += new System.EventHandler(this.bMusic_Click);
-            // 
             // pBLost
             // 
             this.pBLost.Image = global::CSHra.Properties.Resources.lost;
@@ -196,7 +182,7 @@
             this.bStop.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.bStop.Font = new System.Drawing.Font("Stencil", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bStop.ForeColor = System.Drawing.Color.Yellow;
-            this.bStop.Location = new System.Drawing.Point(964, 6);
+            this.bStop.Location = new System.Drawing.Point(1142, 12);
             this.bStop.Name = "bStop";
             this.bStop.Size = new System.Drawing.Size(189, 37);
             this.bStop.TabIndex = 12;
@@ -214,7 +200,6 @@
             this.Controls.Add(this.bStop);
             this.Controls.Add(this.pBLost);
             this.Controls.Add(this.pBWin);
-            this.Controls.Add(this.bMusic);
             this.Controls.Add(this.lStatus);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pBKonec);
@@ -251,7 +236,6 @@
         private System.Windows.Forms.PictureBox pBKonec;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lStatus;
-        private System.Windows.Forms.Button bMusic;
         private System.Windows.Forms.PictureBox pBWin;
         private System.Windows.Forms.PictureBox pBLost;
         private System.Windows.Forms.Button bStop;
