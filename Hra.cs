@@ -311,6 +311,7 @@ namespace CSHra
             Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
             { { '5', (0, 1) }, {'6', (0, -1)}, {'7', (-1, 0)}, {'8', (1, 0)} };
             char c2 = mapa.plan[x, y];
+            if (!(c2 == '5' || c2 == '6' || c2 == '7' || c2 == '8')) return;
             int xPrisera = (polohaTah[c2].Item1 + mapa.sirka + x) % mapa.sirka;
             int yPrisera = (polohaTah[c2].Item2 + mapa.vyska + y) % mapa.vyska;
 
