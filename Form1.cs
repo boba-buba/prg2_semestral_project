@@ -56,9 +56,6 @@ namespace CSHra
             pBKonec.Visible = false;
             pBWin.Visible = false;
             pBLost.Visible = false;
-
-
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -69,7 +66,7 @@ namespace CSHra
                 case Stav.bezi:
                     this.Text = "PACMAN";
                     //this.Text = "Zbývá sebrat " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí" + mapa.lives;
-                    lStatus.Text = "Collected " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " coins" + "\nLeft lives "+ mapa.lives;
+                    lStatus.Text =  "Left lives "+ mapa.lives;
                     lStatus.Visible = true;
                     if ( mezivysledek  != mapa.pocetDiamantu)
                     {
@@ -103,7 +100,7 @@ namespace CSHra
                     bNext.Visible = true;
                     bStop.Visible = false;
                     mezivysledek++;
-                    lResult.Text = "Winning!" + " You collected " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " coins\n"
+                    lResult.Text = "Winning! You collected all coins\n"
                         + "Press NEXT to start\n next level!";
                     lResult.Visible = true;
                     break;
@@ -119,7 +116,7 @@ namespace CSHra
                     timer1.Enabled = false;
                     bAgain.Visible = true;
                     bStop.Visible = false;
-                    lResult.Text = "Lost!" + " You collected " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " coins"; // dodat opci pro povtor tehle urovne nebo pro celou hru, jeste jedna button
+                    lResult.Text = "Lost! You did not collect all coins"; // dodat opci pro povtor tehle urovne nebo pro celou hru, jeste jedna button
                     lResult.Visible = true;
                     break;
                 
@@ -135,28 +132,32 @@ namespace CSHra
         {
             if (keyData == Keys.Up)
             {
-                mapa.ZmenaHrdiny('U');
+                if (mapa.killmode) { mapa.ZmenaHrdiny('e'); }
+                else { mapa.ZmenaHrdiny('U'); }
                 stisknutaSipka = StisknutaSipka.nahoru;
                 
                 return true;
             }
             if (keyData == Keys.Down)
             {
-                mapa.ZmenaHrdiny('D');
+                if (mapa.killmode) { mapa.ZmenaHrdiny('e'); }
+                else { mapa.ZmenaHrdiny('D'); }
                 stisknutaSipka = StisknutaSipka.dolu;
                 
                 return true;
             }
             if (keyData == Keys.Left)
             {
-                mapa.ZmenaHrdiny('L');
+                if (mapa.killmode) { mapa.ZmenaHrdiny('e'); }
+                else { mapa.ZmenaHrdiny('L'); }
                 stisknutaSipka = StisknutaSipka.doleva;
                 
                 return true;
             }
             if (keyData == Keys.Right)
             {
-                mapa.ZmenaHrdiny('R');
+                if (mapa.killmode) { mapa.ZmenaHrdiny('e'); }
+                else { mapa.ZmenaHrdiny('R'); }
                 stisknutaSipka = StisknutaSipka.doprava;
                 
                 return true;
