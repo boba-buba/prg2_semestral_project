@@ -55,7 +55,10 @@ namespace CSHra
             this.zacX = zacX;
             this.zacY = zacY;
             
+            
         }
+        public bool killmode = false;
+        public int count = 50;
 
         public override void VratNaZacatek()
         {
@@ -107,6 +110,7 @@ namespace CSHra
             }
             else if (mapa.JeMinceHrdina(nove_x, nove_y))
             {
+                if (mapa.plan[x, y] == 'A' || mapa.plan[x, y] == 'C') { killmode = true;  count = 50;  }
                 mapa.Presun(x, y, nove_x, nove_y);
 
             }
