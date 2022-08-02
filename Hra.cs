@@ -16,7 +16,6 @@ namespace CSHra
         public int y;
         public int zacX;
         public int zacY;
-        public char znak;
         public char previous;
         public abstract void UdelejKrok();
         public abstract void VratNaZacatek();
@@ -410,7 +409,7 @@ namespace CSHra
         {
             if (plan[x, y] == 'c' || plan[x, y] == 'C' || plan[x, y] == 'A')
             {
-                if (plan[x, y] == 'A' || plan[x, y] == 'C') { killmode = true; count += 100; }
+                if (plan[x, y] == 'A' || plan[x, y] == 'C') { killmode = true; count += 50; }
                 pocetDiamantu++;
                 return true;
             }
