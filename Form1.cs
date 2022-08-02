@@ -38,8 +38,6 @@ namespace CSHra
         public bool music = false;
         private SoundPlayer Player = new SoundPlayer();
 
-        //public string file = "plan.txt";
-        //public char[,] p;
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -56,9 +54,6 @@ namespace CSHra
             pBKonec.Visible = false;
             pBWin.Visible = false;
             pBLost.Visible = false;
-
-
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -68,8 +63,7 @@ namespace CSHra
             {
                 case Stav.bezi:
                     this.Text = "PACMAN";
-                    //this.Text = "Zbývá sebrat " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " mincí" + mapa.lives;
-                    lStatus.Text = "Collected " + mezivysledek + "/" + mapa.ZbyvaDiamantu + " coins" + "\nLeft lives "+ mapa.lives;
+                    lStatus.Text =  "Left lives "+ mapa.lives;
                     lStatus.Visible = true;
                     if ( mezivysledek  != mapa.pocetDiamantu)
                     {
@@ -84,8 +78,6 @@ namespace CSHra
                     pBKonec.Visible = false;
                     pBWin.Visible = false;
                     pBLost.Visible = false;
-
-
                     this.BackgroundImage = null;
                     this.BackColor = Color.Black;
                     mapa.PohniVsemiPrvky(stisknutaSipka);
@@ -103,12 +95,10 @@ namespace CSHra
                     bNext.Visible = true;
                     bStop.Visible = false;
                     mezivysledek++;
-                    lResult.Text = "Winning!" + " You collected " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " coins\n"
-                        + "Press NEXT to start\n next level!";
+                    lResult.Text = "Winning! You collected all coins\n" + "Press NEXT to start\n next level!";
                     lResult.Visible = true;
                     break;
                 case Stav.prohra:
-                    //p = mapa.plan;
                     pBWin.Visible = false;
                     pBLost.Visible = true;
                     lStatus.Visible = false;
@@ -119,7 +109,7 @@ namespace CSHra
                     timer1.Enabled = false;
                     bAgain.Visible = true;
                     bStop.Visible = false;
-                    lResult.Text = "Lost!" + " You collected " + mezivysledek + " / " + mapa.ZbyvaDiamantu + " coins"; // dodat opci pro povtor tehle urovne nebo pro celou hru, jeste jedna button
+                    lResult.Text = "Lost! You did not collect all coins";
                     lResult.Visible = true;
                     break;
                 
@@ -135,28 +125,32 @@ namespace CSHra
         {
             if (keyData == Keys.Up)
             {
-                mapa.ZmenaHrdiny('U');
+                if (mapa.killmode) { mapa.ZmenaHrdiny('e'); }
+                else { mapa.ZmenaHrdiny('U'); }
                 stisknutaSipka = StisknutaSipka.nahoru;
                 
                 return true;
             }
             if (keyData == Keys.Down)
             {
-                mapa.ZmenaHrdiny('D');
+                if (mapa.killmode) { mapa.ZmenaHrdiny('e'); }
+                else { mapa.ZmenaHrdiny('D'); }
                 stisknutaSipka = StisknutaSipka.dolu;
                 
                 return true;
             }
             if (keyData == Keys.Left)
             {
-                mapa.ZmenaHrdiny('L');
+                if (mapa.killmode) { mapa.ZmenaHrdiny('e'); }
+                else { mapa.ZmenaHrdiny('L'); }
                 stisknutaSipka = StisknutaSipka.doleva;
                 
                 return true;
             }
             if (keyData == Keys.Right)
             {
-                mapa.ZmenaHrdiny('R');
+                if (mapa.killmode) { mapa.ZmenaHrdiny('e'); }
+                else { mapa.ZmenaHrdiny('R'); }
                 stisknutaSipka = StisknutaSipka.doprava;
                 
                 return true;
@@ -199,8 +193,7 @@ namespace CSHra
         private void button2_Click_1(object sender, EventArgs e)
         {
 
-            offset = 0; // dodat offset pro uroven nebo tlacitko nove
-            //offset =- mapa.offsetLine;
+            offset = 0;
             button1_Click(sender, e);
 
         }
@@ -243,21 +236,20 @@ namespace CSHra
             }*/
         }
 
-        string m = "stop";
+        string nadpis = "stop";
         private void bStop_Click(object sender, EventArgs e)
         {
             if (bStop.Text == "stop")
             {
-                m = "continue";
+                nadpis = "continue";
                 timer1.Enabled = false;
-                // neco tady dat 
             }
             if (bStop.Text == "continue")
             {
-                m = "stop";
+                nadpis = "stop";
                 timer1.Enabled = true;
             }
-            bStop.Text = m;
+            bStop.Text = nadpis;
             
         }
     }

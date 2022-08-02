@@ -16,7 +16,7 @@ namespace CSHra
         public int y;
         public int zacX;
         public int zacY;
-        public char znak;
+        public char previous;
         public abstract void UdelejKrok();
         public abstract void VratNaZacatek();
     }
@@ -47,14 +47,15 @@ namespace CSHra
     class Hrdina : PohyblivyPrvek
     {
         
-        public Hrdina(Mapa mapa, int kdex, int kdey, int zacX, int zacY)
+        public Hrdina(Mapa mapa, int kdex, int kdey)
         {
             this.mapa = mapa;
             this.x = kdex;
             this.y = kdey;
-            this.zacX = zacX;
-            this.zacY = zacY;
-            
+            zacX = kdex;
+            zacY = kdey;
+            previous = ' ';
+  
         }
 
         public override void VratNaZacatek()
@@ -71,12 +72,13 @@ namespace CSHra
 
         public override void UdelejKrok()
         {
+            if (mapa.killmode) { mapa.count--; }
             int nove_x = x;
             int nove_y = y;
 
             int nove_bx = x;
             int nove_by = y;
-            // ###########################################################
+
 
             switch (mapa.stisknutaSipka)
             {
@@ -99,43 +101,44 @@ namespace CSHra
             }
             nove_x = (nove_x+mapa.sirka) % mapa.sirka;
             nove_y = (nove_y+mapa.vyska) % mapa.vyska;
-            // ###########################################################
 
+
+            if (mapa.count <= 0) { mapa.killmode = false; }
             if (mapa.JeVolno(nove_x, nove_y))
             {
+
                 mapa.Presun(x, y, nove_x, nove_y); // presune obsah mapy a pokud je tam pohybliny prvek, zmeni mu x a y
+                mapa.KonecLevelu();
             }
             else if (mapa.JeMinceHrdina(nove_x, nove_y))
             {
+                
                 mapa.Presun(x, y, nove_x, nove_y);
-
+                mapa.KonecLevelu();
             }
             else if (mapa.JePrisera(nove_x, nove_y))
-            {               
-                mapa.lives--;
-                if (mapa.lives == 0) mapa.stav = Stav.prohra;
+            {  
+                if (mapa.killmode)
+                {
+                    mapa.ZrusPohyblivyPrvek(nove_x, nove_y);
+                }
                 else
                 {
-                    VratNaZacatek();
-                    //mapa.plan[x, y] = ' ';
-                    //char pr = mapa.plan[nove_x, nove_y];
-                    //mapa.plan[nove_x, nove_y] = pr;
-                    //mapa.hrdina.x = mapa.hrdina.zacX;
-                    //mapa.hrdina.y = mapa.hrdina.zacY;
-                    //mapa.plan[mapa.hrdina.zacX, mapa.hrdina.zacY] = 'R';
-                    /*foreach (PohyblivyPrvek p in mapa.PohyblivePrvkyKromeHrdiny)
+                    mapa.lives--;
+                    if (mapa.lives == 0) mapa.stav = Stav.prohra;
+                    else
                     {
-                        if (Object.ReferenceEquals(p.GetType(), typeof(PriseraChytra)))
-                            p.VratNaZacatek();
-                        else continue;
-                    }*/
-
+                        VratNaZacatek();
+                    }
                 }
+                mapa.KonecLevelu();
+
             }     
             else if (mapa.JeZivot(nove_x, nove_y))
             {
                 mapa.lives++;
                 mapa.Presun(x, y, nove_x, nove_y);
+                mapa.KonecLevelu();
             }
             else return;
 
@@ -151,7 +154,6 @@ namespace CSHra
             this.y = kdey;
         }
 
-
         public override void UdelejKrok()
         {
             return;
@@ -164,16 +166,13 @@ namespace CSHra
 
     class PriseraChytra : PohyblivyPrvek
     {
-        public PriseraChytra(Mapa mapa, int kdex, int kdey, int zacX, int zacY, char znak)
+        public PriseraChytra(Mapa mapa, int kdex, int kdey)
         {
             this.mapa = mapa;
             this.x = kdex;
             this.y = kdey;
-            this.zacX = zacX;
-            this.zacY = zacY;
-            this.znak = znak;
+            previous = ' ';
         }
-        //###################################
         static Dictionary<char, (int, int)> polohaTah = new Dictionary<char, (int, int)>()
         { { '>', (0, 1) }, {'<', (0, -1)}, {'^', (-1, 0)}, {'V', (1, 0)} };
 
@@ -181,17 +180,12 @@ namespace CSHra
         { { '>', (1, 0) }, {'<', (-1, 0)}, {'^', (0, 1)}, {'V', (0, -1)} };
 
         public int count = 0;
-
         static bool pred = false;
         static bool predRight = false;
-        char previous = ' ';
 
         public override void VratNaZacatek()
         {
-            mapa.plan[x, y] = previous;
-            x = zacX;
-            y = zacY;
-            mapa.plan[zacX, zacY] = znak;
+            return;
         }
         static char left(char p)
         {
@@ -214,33 +208,26 @@ namespace CSHra
         public void move()
         {
             char c = mapa.plan[x, y];
-            //Console.WriteLine(c);
             if (!(c == '>' || c == '<' || c == 'V' || c == '^')) return;
             int xPrisera = (polohaTah[c].Item1 + mapa.sirka + x) % mapa.sirka;
             int yPrisera = (polohaTah[c].Item2 + mapa.vyska + y) % mapa.vyska;
 
             bool volno = (mapa.JeVolno(xPrisera, yPrisera) || mapa.JeMince(xPrisera, yPrisera) || mapa.JeZivot(xPrisera, yPrisera));
-            //bool zprava = mapa.JeZed(zpravaZed[c].Item1 + x, zpravaZed[c].Item2 + y);
-
 
             if (mapa.JeHrdina(xPrisera, yPrisera))
             {
-                mapa.lives--;
-                if (mapa.lives == 0) mapa.stav = Stav.prohra;
+                if (mapa.killmode)
+                {
+                    mapa.plan[x, y] = previous;
+                }
                 else
                 {
-                    mapa.hrdina.VratNaZacatek();
-                    //mapa.plan[xPrisera, yPrisera] = ' ';
-                    //mapa.hrdina.x = mapa.hrdina.zacX;
-                    //mapa.hrdina.y = mapa.hrdina.zacY;
-                    //mapa.plan[mapa.hrdina.zacX, mapa.hrdina.zacY] = 'R';
-
-                    /*foreach (PohyblivyPrvek p in mapa.PohyblivePrvkyKromeHrdiny)
+                    mapa.lives--;
+                    if (mapa.lives == 0) mapa.stav = Stav.prohra;
+                    else
                     {
-                        if (Object.ReferenceEquals(p.GetType(), typeof(PriseraChytra)))
-                            p.VratNaZacatek();
-                        else continue;
-                    }*/
+                        mapa.hrdina.VratNaZacatek();
+                    }
                 }
             }
             else if ((volno || predRight) && !mapa.JeZed(xPrisera, yPrisera)) // muze byt chyba v jezed, mod to napravi
@@ -259,7 +246,6 @@ namespace CSHra
                 predRight = true;
                 pred = false;
             }
-
             else if ( !mapa.JeVolno(xPrisera, yPrisera))
             {
                mapa.plan[x, y] = left(c);           
@@ -269,32 +255,23 @@ namespace CSHra
         public override void UdelejKrok()
         {
             move();
-            //if (count == 1) { count = 0; move(); }
-            //else count++;
         }
 
     }
 
     class PriseraHloupa : PohyblivyPrvek
     {
-        public PriseraHloupa(Mapa mapa, int kdex, int kdey, int zacX, int zacY, char znak)
+        public PriseraHloupa(Mapa mapa, int kdex, int kdey)
         {
             this.mapa = mapa;
             this.x = kdex;
             this.y = kdey;
-            this.zacX = zacX;
-            this.zacY = zacY;
-            this.znak = znak;
+            previous = ' ';
         }
-
-        public char previous = ' ';
 
         public override void VratNaZacatek()
         {
-            mapa.plan[x, y] = previous;
-            x = zacX;
-            y = zacY;
-            mapa.plan[zacX, zacY] = znak;
+            return;
         }
         char Otocse(char c)
         {
@@ -302,7 +279,6 @@ namespace CSHra
             if (c == '6') return '5';
             if (c == '7') return '8';
             else return '7';
-
         }
         public override void UdelejKrok()
         {
@@ -321,15 +297,21 @@ namespace CSHra
                 mapa.plan[xPrisera, yPrisera] = c2;
                 x = xPrisera;
                 y = yPrisera;
-
             }
             else if (mapa.JeHrdina(xPrisera, yPrisera))
             {
-                mapa.lives--;
-                if (mapa.lives == 0) mapa.stav = Stav.prohra;
-                else
+                if (mapa.killmode)
                 {
-                    mapa.hrdina.VratNaZacatek();
+                    mapa.plan[x, y] = previous;
+                }
+                else
+                {   
+                    mapa.lives--;
+                    if (mapa.lives == 0) mapa.stav = Stav.prohra;
+                    else
+                    {
+                        mapa.hrdina.VratNaZacatek();
+                    }
                 }
             }
             else
@@ -350,6 +332,9 @@ namespace CSHra
         public int pocetDiamantu;
         public int offsetLine;
         public int lives = 3;
+        
+        public bool killmode = false;
+        public int count = 0;
 
         public Stav stav = Stav.nezacala;
 
@@ -376,7 +361,7 @@ namespace CSHra
             plan[naX, naY] = c;
 
             // podivat se, jestli tam nestal hrdina:
-            if (c=='R' || c == 'L' || c == 'U' || c == 'D')
+            if (c=='R' || c == 'L' || c == 'U' || c == 'D' || c == 'e')
             {
                 hrdina.x = naX;
                 hrdina.y = naY;
@@ -413,7 +398,7 @@ namespace CSHra
 
         public bool JeHrdina(int x, int y)
         {
-            return plan[x, y] == 'R' || plan[x, y] == 'L' || plan[x, y] == 'U' || plan[x, y] == 'D';
+            return plan[x, y] == 'R' || plan[x, y] == 'L' || plan[x, y] == 'U' || plan[x, y] == 'D' || plan[x, y] == 'e';
         }
         public bool JeMince(int x, int y)
         {
@@ -424,8 +409,8 @@ namespace CSHra
         {
             if (plan[x, y] == 'c' || plan[x, y] == 'C' || plan[x, y] == 'A')
             {
+                if (plan[x, y] == 'A' || plan[x, y] == 'C') { killmode = true; count += 50; }
                 pocetDiamantu++;
-                KonecLevelu();
                 return true;
             }
             return false;
@@ -458,29 +443,30 @@ namespace CSHra
  
         public bool JeZed(int x, int y)
         {
-            //string s = Convert.ToString(plan[x, y]);
+         
             char s = plan[x, y];
-            
-            //return "vhu(n)1234".Contains(s);
-            //Console.WriteLine(s == 'v' || s == 'h' || s == 'u' || s == '(' || s == 'n' || s == ')' || s == '1' || s == '2' || s == '3' || s == '4');
             return (s == 'v' || s == 'h' || s == 'u' || s == '(' || s == 'n' || s == ')' || s == '1' || s == '2' || s == '3' || s == '4');
         }
         public void KonecLevelu()
         {
-            if (pocetDiamantu == ZbyvaDiamantu)
-            {
-                stav = Stav.vyhra;
-                return;
-            }
+            bool a = true;
+            if (NicNezbyva()) 
+            { stav = Stav.vyhra; return; }
 
         }
 
-        /*public void ZrusZivot(int x, int y)
+        public bool NicNezbyva()
         {
-            plan[x, y] = ' ';
-
-        }*/
-
+            for (int i = 0; i < vyska; i++)
+            {
+                for (int j = 0; j < sirka; j++)
+                {
+                    if (plan[j, i] == 'c' || plan[j, i] == 'C' || plan[j, i] == 'A') return false;
+                    
+                }
+            }
+            return true;
+        } 
 
         public void NactiMapu(string cesta, int offset)
         {
@@ -513,7 +499,8 @@ namespace CSHra
                         case 'L':
                         case 'U':
                         case 'D':
-                            this.hrdina = new Hrdina(this, x, y, x, y);
+                        case 'e':
+                            this.hrdina = new Hrdina(this, x, y);
                             break;
 
                         case '<':
@@ -521,7 +508,7 @@ namespace CSHra
                         case '>':
                         case 'V':
                             
-                            PriseraChytra priseraChytra = new PriseraChytra(this, x, y, x, y, znak);
+                            PriseraChytra priseraChytra = new PriseraChytra(this, x, y);
                             PohyblivePrvkyKromeHrdiny.Add(priseraChytra);
                             break;
 
@@ -529,7 +516,7 @@ namespace CSHra
                         case '6':
                         case '7':
                         case '8':
-                            PriseraHloupa priseraHloupa = new PriseraHloupa(this, x, y, x, y, znak);
+                            PriseraHloupa priseraHloupa = new PriseraHloupa(this, x, y);
                             PohyblivePrvkyKromeHrdiny.Add(priseraHloupa);
                             break;
 
@@ -559,7 +546,6 @@ namespace CSHra
             {
                 this.sx = bmp.Height;
                 int pocet = bmp.Width / sx; // predpokladam, ze to jsou kosticky v rade
-                //Console.WriteLine(pocet);
                 ikonky = new Bitmap[pocet];
                 for (int i = 0; i < pocet; i++)
                 {
@@ -613,7 +599,7 @@ namespace CSHra
             for (int y =  0; y < vyska; y++)
             {
                 for (int x = 0; x < sirka; x++)
-                    if (plan[x, y] == 'R' || plan[x, y] == 'L' || plan[x, y] == 'U' || plan[x, y] == 'D') plan[x, y] = naCo;
+                    if (plan[x, y] == 'R' || plan[x, y] == 'L' || plan[x, y] == 'U' || plan[x, y] == 'D' || plan[x,y] == 'e') plan[x, y] = naCo;
             }
             return;
         }
@@ -623,8 +609,7 @@ namespace CSHra
             foreach (PohyblivyPrvek p in PohyblivePrvkyKromeHrdiny)
             {
                 p.UdelejKrok();
-            }
-
+            } 
             hrdina.UdelejKrok();
         }
     }

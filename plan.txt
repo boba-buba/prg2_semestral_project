@@ -5,7 +5,7 @@ rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 v>cccccccccccccccccccccccccccccccHcccccv
 vcncccc2hhh3ccccc2hh3c2h3c2hhhhhh3cccncv
 vc1hh3cvcccuccc(h4cVvcvcvcvccccccvc2h4cv
-vccccvcvcncccnccccccvcvcvcvc2hh3cvcvcccv
+vccccvcvcncccnccccccvAvcvcvc2hh3cvcvcccv
 uc2)Cvcvcvcncvcnc2)cvcvcvcvcuccvcvcvcncu
 ccvccvcvcvcvcvcvcvccvUvcvcvccccvcvcvcvcc
 nc1)cvcvcucucucucvcc1h4Avc1hhhh4cvcvcuCn
@@ -17,7 +17,7 @@ vccHcccccccccccccccccccccccccccccccccc<v
 16
 rrrrrrrrrrrrrrrrrrrrrr
 2hhhhhhhhhhhhhhhhhhhh3
-vccHccccc^Cccccccccccv
+vcccccccc^Cccccccccccv
 vc(hhhhhh)c2hhhhhhh3cv
 u8cAcccccccvcccccccvHv
 2hhhhhhhh)cvc(hhhhh4cv
@@ -40,7 +40,7 @@ vc2hhhh3cvcnccccnc2hhhhhhh3c2hhhhhhhh3c23cccnVv
 vcvccccvcvc1hhhh4cvcccccccvcvccccccccvcv13ccvcv
 vcvc23cvcvcccccAccvc2hhh3cvcvccccccccvcvcvccvcv
 vcvc14cvc1hhhhhh3cvcvcccvcvcvc2hhhhhh4cvc13cvcv
-vcvccccvccccccccvcvc1h)cvcvcvcvHcccccccvccvcvcv
+vcvccccvccccccccvcvc1h)cvcvcvcvAcccccccvccvcvcv
 vcvc(hh4c2hhhh3cvcvcccccvcvcvcvc2hhhh3cvcc13vcv
 vcvccccccv<cccvcvc1hhhhh4cvcucvcvccccvcvccc1vcv
 vcvc2hh3cvc23cvcvccccHccccvcccvcvc23cvcvccccvAv
@@ -56,5 +56,5 @@ vccccvc1hhhhhh3cvccncccvcvHR  vc2hhhhhh4cvccvcv
 v(hhh4ccccccccvcvc(4cncvcv    vcvcccccccc1)cvcv
 vccccc>cccccccvcvccccvcvcv    vcvcccHcccccccvcv
 v(hhhhhhhhhhhh4c1hhhh4c1h4    uc1hhhhhhhhhhh4cv
-vcccccccccccccccccccccHcccccccccccccccccccccc^v
+vcccccccccccccccccccccCcccccccccccccccccccccc^v
 1hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh4
