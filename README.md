@@ -1,4 +1,4 @@
-## PACMAN hra
+## PACMAN game
 
 ## Description
-Hra Pac Man pro jednoho, kde cílem hrače je zůstat naživu a sebrat všechny cenné předměty (mince, jablka, víšně) proto, aby vyhrál. Ve hře jsou tří úrovně.
+A PacMan game for one, where the player's goal is to stay alive and collect all the valuable items (coins, apples, cherries) in order to win. There are three levels in the game.
